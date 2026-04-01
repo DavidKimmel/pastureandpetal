@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitor Intelligence — Pasture &amp; Petal | ClearGrade</title>
+<style>
+  :root {
+    --navy: #0f1a2e;
+    --navy-light: #162240;
+    --cyan: #00d4ff;
+    --cyan-glow: rgba(0,212,255,0.15);
+    --amber: #f5a623;
+    --amber-glow: rgba(245,166,35,0.15);
+    --green: #34d399;
+    --green-glow: rgba(52,211,153,0.15);
+    --red: #f87171;
+    --red-glow: rgba(248,113,113,0.15);
+    --purple: #a78bfa;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --text-bright: #f8fafc;
+    --border: rgba(255,255,255,0.08);
+    --card-bg: rgba(255,255,255,0.03);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  .audit-header {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .brand-info .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .brand-info h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-bright);
+  }
+
+  .brand-info .url {
+    font-size: 14px;
+    color: var(--cyan);
+    margin-top: 8px;
+  }
+
+  .audit-date {
+    font-size: 13px;
+    color: var(--text-dim);
+    text-align: right;
+  }
+
+  /* Market Overview */
+  .market-banner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .market-stat {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .market-stat .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--cyan);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .market-stat .stat-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 48px; }
+
+  .section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section p.intro {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  /* Competitor Cards */
+  .competitor-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .comp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .comp-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-bright);
+  }
+
+  .comp-url {
+    font-size: 13px;
+    color: var(--cyan);
+    margin-top: 2px;
+  }
+
+  .comp-stats {
+    display: flex;
+    gap: 16px;
+    text-align: right;
+  }
+
+  .comp-stat-item .comp-stat-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-bright);
+  }
+
+  .comp-stat-item .comp-stat-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .comp-usp {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 16px;
+    padding: 12px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    border-left: 3px solid var(--cyan);
+  }
+
+  .comp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .comp-grid-col h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .comp-grid-col ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .comp-grid-col li {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 4px 0;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .comp-grid-col li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .comp-strengths li::before { background: var(--red); }
+  .comp-weaknesses li::before { background: var(--green); }
+
+  /* Comparison Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+  }
+
+  th {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+
+  td {
+    font-size: 14px;
+    color: var(--text);
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .highlight-row td { background: var(--cyan-glow); }
+
+  .val-high { color: var(--green); font-weight: 600; }
+  .val-mid { color: var(--amber); font-weight: 600; }
+  .val-low { color: var(--red); font-weight: 600; }
+
+  /* Positioning Map */
+  .positioning {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .positioning h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 16px;
+  }
+
+  .pos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .pos-quadrant {
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .pos-quadrant h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .pos-quadrant p {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  /* Recommendations */
+  .rec-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+
+  .rec-card .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .badge-high { background: var(--red-glow); color: var(--red); }
+  .badge-medium { background: var(--amber-glow); color: var(--amber); }
+  .badge-low { background: var(--cyan-glow); color: var(--cyan); }
+
+  .rec-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 6px;
+  }
+
+  .rec-card p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  .audit-footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .audit-footer a { color: var(--cyan); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .header-top { flex-direction: column; gap: 12px; }
+    .market-banner { grid-template-columns: 1fr 1fr; }
+    .comp-header { flex-direction: column; gap: 12px; }
+    .comp-grid { grid-template-columns: 1fr; }
+    .comp-stats { text-align: left; }
+    .pos-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .market-banner { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="audit-header">
+    <div class="header-top">
+      <div class="brand-info">
+        <div class="subtitle">ClearGrade Competitive Intelligence</div>
+        <h1>Pasture &amp; Petal</h1>
+        <div class="url">pastureandpetal.com &mdash; Tallow Skincare Market</div>
+      </div>
+      <div class="audit-date">
+        <div>March 29, 2026</div>
+        <div>5 competitors analyzed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Market Overview -->
+  <div class="market-banner">
+    <div class="market-stat">
+      <div class="stat-value">$277-352M</div>
+      <div class="stat-label">Market Size (2025)</div>
+    </div>
+    <div class="market-stat">
+      <div class="stat-value">8.3%</div>
+      <div class="stat-label">CAGR Through 2035</div>
+    </div>
+    <div class="market-stat">
+      <div class="stat-value">47.4%</div>
+      <div class="stat-label">North America Share</div>
+    </div>
+    <div class="market-stat">
+      <div class="stat-value">52/100</div>
+      <div class="stat-label">Competitive Score</div>
+    </div>
+  </div>
+
+  <!-- Market Context -->
+  <div class="section">
+    <h2>Market Landscape</h2>
+    <p class="intro">The tallow skincare market is experiencing rapid growth driven by the ancestral health movement, clean beauty adoption, and viral social media content. TikTok and Instagram are the primary discovery channels. The market is fragmented with several artisan DTC brands competing alongside one larger player (Primally Pure). Pasture &amp; Petal has strong product-market fit and authentic differentiation but is severely under-leveraging distribution and marketing channels compared to competitors.</p>
+
+    <div class="positioning">
+      <h3>Key Market Trends</h3>
+      <div class="pos-grid">
+        <div class="pos-quadrant" style="border-color: var(--green);">
+          <h4 style="color: var(--green);">Tailwinds</h4>
+          <p>Ancestral / animal-based skincare going mainstream. Clean beauty driving consumer adoption. DTC e-commerce enabling niche artisan brands. Growing distrust of synthetic ingredients among target demographic.</p>
+        </div>
+        <div class="pos-quadrant" style="border-color: var(--amber);">
+          <h4 style="color: var(--amber);">Opportunities</h4>
+          <p>TikTok virality is the #1 growth driver in category. Specialty segments (pregnancy, baby, men&rsquo;s) are underserved. Subscription/auto-ship models are underpenetrated. International demand (UK, EU, AU) is growing.</p>
+        </div>
+        <div class="pos-quadrant" style="border-color: var(--red);">
+          <h4 style="color: var(--red);">Threats</h4>
+          <p>Primally Pure dominance (563K Instagram). New entrants copying tallow positioning. Mass-market brands may co-opt &ldquo;ancestral skincare&rdquo; messaging. Low switching costs between artisan brands.</p>
+        </div>
+        <div class="pos-quadrant" style="border-color: var(--cyan);">
+          <h4 style="color: var(--cyan);">Pasture &amp; Petal Advantages</h4>
+          <p>Dual-provenance (tallow + raw honey from own farm). No-water formulation philosophy. Specialty niche products unmatched by competitors. Price-competitive at 15-30% below premium brands. Authentic small-batch story.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Table -->
+  <div class="section">
+    <h2>Head-to-Head Comparison</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Price Range</th>
+          <th>Products</th>
+          <th>Instagram</th>
+          <th>TikTok</th>
+          <th>Reviews</th>
+          <th>Shipping</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td><strong>Pasture &amp; Petal</strong></td>
+          <td>$8-$79</td>
+          <td>21</td>
+          <td class="val-low">&lt;2K</td>
+          <td class="val-low">None</td>
+          <td class="val-low">~0</td>
+          <td>US only</td>
+        </tr>
+        <tr>
+          <td><strong>Primally Pure</strong></td>
+          <td>$12-$110</td>
+          <td>50+</td>
+          <td class="val-high">563K</td>
+          <td class="val-high">48K</td>
+          <td class="val-high">1000s</td>
+          <td>US + Intl</td>
+        </tr>
+        <tr>
+          <td><strong>Toups and Co</strong></td>
+          <td>$19-$187</td>
+          <td>40+</td>
+          <td class="val-high">122K</td>
+          <td class="val-mid">Active</td>
+          <td class="val-high">1000s</td>
+          <td>US + Intl</td>
+        </tr>
+        <tr>
+          <td><strong>Ancestral Cosmetics</strong></td>
+          <td>$17-$45</td>
+          <td>12-15</td>
+          <td class="val-high">109K</td>
+          <td class="val-mid">Active</td>
+          <td class="val-high">Trustpilot</td>
+          <td>UK/EU + Intl</td>
+        </tr>
+        <tr>
+          <td><strong>Nefertem Naturals</strong></td>
+          <td>$29-$80</td>
+          <td>15-20</td>
+          <td class="val-low">1.2K</td>
+          <td class="val-low">None</td>
+          <td class="val-high">10,000+</td>
+          <td>US</td>
+        </tr>
+        <tr>
+          <td><strong>Grass Fed Skin</strong></td>
+          <td>$14-$48</td>
+          <td>10-15</td>
+          <td class="val-low">Small</td>
+          <td class="val-low">None</td>
+          <td class="val-mid">Some</td>
+          <td>US</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Competitor Deep Dives -->
+  <div class="section">
+    <h2>Competitor Profiles</h2>
+
+    <!-- Primally Pure -->
+    <div class="competitor-card">
+      <div class="comp-header">
+        <div>
+          <div class="comp-name">Primally Pure</div>
+          <div class="comp-url">primallypure.com</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">$12-$110</div>
+            <div class="comp-stat-label">Price Range</div>
+          </div>
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">50+</div>
+            <div class="comp-stat-label">Products</div>
+          </div>
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">563K</div>
+            <div class="comp-stat-label">Instagram</div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-usp">Regenerative organic farm-sourced tallow from Southern California. Established clean beauty brand with broad product line spanning deodorants, baby care, sun care, and color cosmetics.</div>
+      <div class="comp-grid">
+        <div class="comp-grid-col comp-strengths">
+          <h4 style="color:var(--red)">Their Advantages Over P&amp;P</h4>
+          <ul>
+            <li>Massive brand awareness (563K Instagram, 48K TikTok)</li>
+            <li>Extensive 50+ product line including deodorants and cosmetics</li>
+            <li>Professional influencer network with hundreds of partnerships</li>
+            <li>Retail distribution beyond DTC</li>
+            <li>Strong SEO authority and content marketing</li>
+          </ul>
+        </div>
+        <div class="comp-grid-col comp-weaknesses">
+          <h4 style="color:var(--green)">P&amp;P's Advantages Over Them</h4>
+          <ul>
+            <li>More personal, intimate farm-to-skin story</li>
+            <li>15-30% lower pricing on comparable products</li>
+            <li>Greater ingredient simplicity and focus</li>
+            <li>Dual-provenance (tallow + raw honey from same farm)</li>
+            <li>Specialty niche products (pregnancy, nursing) they lack</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toups and Co -->
+    <div class="competitor-card">
+      <div class="comp-header">
+        <div>
+          <div class="comp-name">Toups and Co Organics</div>
+          <div class="comp-url">toupsandco.com</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">$19-$187</div>
+            <div class="comp-stat-label">Price Range</div>
+          </div>
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">40+</div>
+            <div class="comp-stat-label">Products</div>
+          </div>
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">122K</div>
+            <div class="comp-stat-label">Instagram</div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-usp">Homesteader-founded brand from South Alabama. Expanded from tallow balms into serums, color cosmetics, and a full skincare line. Strong community in the homesteading and natural living space.</div>
+      <div class="comp-grid">
+        <div class="comp-grid-col comp-strengths">
+          <h4 style="color:var(--red)">Their Advantages Over P&amp;P</h4>
+          <ul>
+            <li>Broader range including color cosmetics</li>
+            <li>Higher brand recognition (122K Instagram)</li>
+            <li>Premium pricing validates luxury positioning</li>
+            <li>Established wholesale and retail channels</li>
+            <li>Podcast appearances and community leadership</li>
+          </ul>
+        </div>
+        <div class="comp-grid-col comp-weaknesses">
+          <h4 style="color:var(--green)">P&amp;P's Advantages Over Them</h4>
+          <ul>
+            <li>Significantly lower prices ($26 vs $45+ for comparable balms)</li>
+            <li>Farm-direct tallow + honey sourcing story</li>
+            <li>Tighter product focus on tallow (not diluted by cosmetics)</li>
+            <li>Specialty products for pregnancy and nursing care</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ancestral Cosmetics -->
+    <div class="competitor-card">
+      <div class="comp-header">
+        <div>
+          <div class="comp-name">Ancestral Cosmetics</div>
+          <div class="comp-url">ancestralcosmetics.com</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">$17-$45</div>
+            <div class="comp-stat-label">Price Range</div>
+          </div>
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">12-15</div>
+            <div class="comp-stat-label">Products</div>
+          </div>
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">109K</div>
+            <div class="comp-stat-label">Instagram</div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-usp">Irish grass-fed tallow and raw honey. Family-owned and handmade in Ireland. Strong ancestral wellness positioning with international appeal and Trustpilot reviews.</div>
+      <div class="comp-grid">
+        <div class="comp-grid-col comp-strengths">
+          <h4 style="color:var(--red)">Their Advantages Over P&amp;P</h4>
+          <ul>
+            <li>109K Instagram following drives organic discovery</li>
+            <li>Strong Trustpilot review presence</li>
+            <li>International market with UK/EU customer base</li>
+            <li>Similar ancestral positioning but more established</li>
+          </ul>
+        </div>
+        <div class="comp-grid-col comp-weaknesses">
+          <h4 style="color:var(--green)">P&amp;P's Advantages Over Them</h4>
+          <ul>
+            <li>Direct farm ownership (not just &ldquo;sourced from farms&rdquo;)</li>
+            <li>US-local advantage &mdash; no international shipping costs</li>
+            <li>21 SKUs vs 12-15 &mdash; broader product range</li>
+            <li>Specialty products they don&rsquo;t offer (pregnancy, men&rsquo;s)</li>
+            <li>Lower entry price ($8 Lip Butter)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nefertem Naturals -->
+    <div class="competitor-card">
+      <div class="comp-header">
+        <div>
+          <div class="comp-name">Nefertem Naturals</div>
+          <div class="comp-url">nefertemnaturals.com</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">$29-$80</div>
+            <div class="comp-stat-label">Price Range</div>
+          </div>
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">15-20</div>
+            <div class="comp-stat-label">Products</div>
+          </div>
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">10K+</div>
+            <div class="comp-stat-label">Reviews</div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-usp">Self-proclaimed &ldquo;original tallow skincare brand&rdquo; since 2012. Small-batch Midwest-made with 4.9-star rating from 10,000+ customers. Media coverage in US Weekly, Yahoo News, Real Simple.</div>
+      <div class="comp-grid">
+        <div class="comp-grid-col comp-strengths">
+          <h4 style="color:var(--red)">Their Advantages Over P&amp;P</h4>
+          <ul>
+            <li>Longest track record in tallow skincare (since 2012)</li>
+            <li>10,000+ customer reviews provide massive social proof</li>
+            <li>Press mentions in mainstream publications</li>
+            <li>Pioneer credibility in the category</li>
+          </ul>
+        </div>
+        <div class="comp-grid-col comp-weaknesses">
+          <h4 style="color:var(--green)">P&amp;P's Advantages Over Them</h4>
+          <ul>
+            <li>Very low social following (1.2K) despite longevity</li>
+            <li>Less compelling farm-to-skin narrative</li>
+            <li>No unique dual-ingredient differentiator like P&amp;P&rsquo;s honey</li>
+            <li>Higher base pricing on comparable products</li>
+            <li>More product variety (21 vs 15-20 SKUs)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grass Fed Skin -->
+    <div class="competitor-card">
+      <div class="comp-header">
+        <div>
+          <div class="comp-name">Grass Fed Skin</div>
+          <div class="comp-url">mygrassfedskin.com</div>
+        </div>
+        <div class="comp-stats">
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">$14-$48</div>
+            <div class="comp-stat-label">Price Range</div>
+          </div>
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">10-15</div>
+            <div class="comp-stat-label">Products</div>
+          </div>
+          <div class="comp-stat-item">
+            <div class="comp-stat-value">Small</div>
+            <div class="comp-stat-label">Social</div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-usp">Family-founded kitchen-to-brand story. Exclusively sources from grass-fed, finished, hormone-free, vaccine-free, antibiotic-free cattle. Appeals to the holistic health / health-sovereignty audience.</div>
+      <div class="comp-grid">
+        <div class="comp-grid-col comp-strengths">
+          <h4 style="color:var(--red)">Their Advantages Over P&amp;P</h4>
+          <ul>
+            <li>Strong sourcing standards messaging (vaccine-free, antibiotic-free)</li>
+            <li>Appeals to health-sovereignty niche audience</li>
+          </ul>
+        </div>
+        <div class="comp-grid-col comp-weaknesses">
+          <h4 style="color:var(--green)">P&amp;P's Advantages Over Them</h4>
+          <ul>
+            <li>More polished brand presentation and visual identity</li>
+            <li>Larger product range (21 vs 10-15 SKUs)</li>
+            <li>Dual-provenance story (tallow + honey from own farm)</li>
+            <li>Specialty products they don&rsquo;t offer</li>
+            <li>Wholesale presence on Faire for B2B distribution</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strategic Recommendations -->
+  <div class="section">
+    <h2>Strategic Recommendations</h2>
+
+    <div class="rec-card">
+      <span class="badge badge-high">HIGH PRIORITY</span>
+      <h3>Close the Social Media Gap</h3>
+      <p>With competitors at 109K-563K Instagram followers and active TikTok presences, Pasture &amp; Petal&rsquo;s &lt;2K following is the single biggest competitive disadvantage. Brynn&rsquo;s authentic farm content (cattle, bees, tallow rendering, product formulation) is exactly what performs on both platforms. Launch TikTok immediately and post 3-4x weekly on both platforms. The tallow skincare hashtag ecosystem has millions of views and is still growing.</p>
+    </div>
+
+    <div class="rec-card">
+      <span class="badge badge-high">HIGH PRIORITY</span>
+      <h3>Build Review Volume to Match Competitors</h3>
+      <p>Nefertem has 10,000+ reviews. Primally Pure and Toups have thousands. Pasture &amp; Petal has ~0 visible reviews. Implement aggressive post-purchase review collection through Fera (already installed). Target 50+ reviews within 90 days across top 5 products. Reviews are the most efficient way to close the trust gap with established competitors.</p>
+    </div>
+
+    <div class="rec-card">
+      <span class="badge badge-high">HIGH PRIORITY</span>
+      <h3>Pursue Press and Roundup Article Placements</h3>
+      <p>Nefertem appears in US Weekly, Yahoo News, and Real Simple. All major competitors appear on tallow skincare roundup lists (The Good Trade, SkinSort, PrettyOrganicGirl). Pasture &amp; Petal appears on none. The farm-to-skin story, Awesome Foundation grant, woman-owned angle, and specialty products (pregnancy skincare) provide multiple compelling editorial hooks.</p>
+    </div>
+
+    <div class="rec-card">
+      <span class="badge badge-medium">MEDIUM PRIORITY</span>
+      <h3>Differentiate on Specialty Products</h3>
+      <p>Blissful Bump (pregnancy), Nip Nourish (nursing), and Beard Balm (men&rsquo;s) address segments that no major competitor serves. These products should be featured prominently in marketing &mdash; they create entry points for customer segments that competitors ignore. Target mommy bloggers, maternal wellness influencers, and men&rsquo;s grooming creators specifically.</p>
+    </div>
+
+    <div class="rec-card">
+      <span class="badge badge-medium">MEDIUM PRIORITY</span>
+      <h3>Sharpen the No-Water Differentiator</h3>
+      <p>Pasture &amp; Petal&rsquo;s no-water formulation is a genuine product advantage that most competitors don&rsquo;t match. This should be elevated from a FAQ answer to a primary marketing message. &ldquo;Zero water. 100% active ingredients.&rdquo; This resonates with the ingredient-conscious buyer and justifies the premium over water-diluted alternatives.</p>
+    </div>
+
+    <div class="rec-card">
+      <span class="badge badge-medium">MEDIUM PRIORITY</span>
+      <h3>Develop a Signature Hero Product</h3>
+      <p>Primally Pure has the Everything Balm. Toups has the Original Tallow Balm. Ancestral Cosmetics has their Tallow &amp; Honey Balm. Each brand is known for one product. Pasture &amp; Petal should choose Perennial Glow or Bare Balm as the gateway product and concentrate marketing, sampling, and reviews on making it the category entry point.</p>
+    </div>
+
+    <div class="rec-card">
+      <span class="badge badge-low">LOW PRIORITY</span>
+      <h3>Evaluate International Expansion</h3>
+      <p>Ancestral Cosmetics serves UK/EU from Ireland. Primally Pure and Toups ship internationally. Pasture &amp; Petal is US-only. Monitor Shopify analytics for international visitor volume. Canada and UK are natural first expansion markets with strong natural skincare demand and English-speaking audiences.</p>
+    </div>
+  </div>
+
+  <!-- Competitive Score Breakdown -->
+  <div class="section">
+    <h2>Pasture &amp; Petal Competitive Dimensions</h2>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Assessment</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Market Differentiation</td>
+          <td class="val-high">7/10</td>
+          <td>Strong dual-provenance and no-water formulation. &ldquo;Ancestral tallow&rdquo; positioning shared by competitors but farm ownership is unique.</td>
+        </tr>
+        <tr>
+          <td>Pricing Competitiveness</td>
+          <td class="val-high">8/10</td>
+          <td>Best-positioned on price. $8-$79 range undercuts premium competitors by 15-30% on comparable products.</td>
+        </tr>
+        <tr>
+          <td>Brand Positioning</td>
+          <td class="val-mid">6/10</td>
+          <td>Compelling story but under-leveraged. No-water and dual-provenance angles need sharper articulation.</td>
+        </tr>
+        <tr>
+          <td>Online Visibility</td>
+          <td class="val-low">2/10</td>
+          <td>Most critical weakness. Negligible social following, no search rankings, no editorial presence.</td>
+        </tr>
+        <tr>
+          <td>Product Range</td>
+          <td class="val-high">7/10</td>
+          <td>21 SKUs with unique specialty products. Only gap: no deodorant or cosmetics line.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="audit-footer">
+    <p>Generated by <a href="https://cleargrade.co">ClearGrade</a> &mdash; AI-Powered Marketing Intelligence</p>
+    <p style="margin-top:4px;">Audit date: March 29, 2026 &middot; pastureandpetal.com</p>
+  </div>
+
+</div>
+</body>
+</html>

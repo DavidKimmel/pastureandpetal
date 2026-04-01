@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Audit — Pasture &amp; Petal | ClearGrade</title>
+<style>
+  :root {
+    --navy: #0f1a2e;
+    --navy-light: #162240;
+    --navy-mid: #1c2d4a;
+    --cyan: #00d4ff;
+    --cyan-glow: rgba(0,212,255,0.15);
+    --amber: #f5a623;
+    --amber-glow: rgba(245,166,35,0.15);
+    --green: #34d399;
+    --green-glow: rgba(52,211,153,0.15);
+    --red: #f87171;
+    --red-glow: rgba(248,113,113,0.15);
+    --purple: #a78bfa;
+    --purple-glow: rgba(167,139,250,0.15);
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --text-bright: #f8fafc;
+    --border: rgba(255,255,255,0.08);
+    --card-bg: rgba(255,255,255,0.03);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .audit-header {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+
+  .brand-info h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 4px;
+  }
+
+  .brand-info .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .brand-info .url {
+    font-size: 14px;
+    color: var(--cyan);
+    margin-top: 8px;
+  }
+
+  .audit-date {
+    font-size: 13px;
+    color: var(--text-dim);
+    text-align: right;
+  }
+
+  /* Score Ring */
+  .score-section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .score-ring {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    flex-shrink: 0;
+  }
+
+  .score-ring svg { transform: rotate(-90deg); }
+
+  .score-ring .bg { fill: none; stroke: var(--border); stroke-width: 10; }
+  .score-ring .progress { fill: none; stroke: var(--amber); stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset 1s ease; }
+
+  .score-ring .score-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .score-ring .score-number {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--amber);
+    line-height: 1;
+  }
+
+  .score-ring .score-grade {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .score-summary {
+    flex: 1;
+  }
+
+  .score-summary h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 12px;
+  }
+
+  .score-summary p {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* Category Cards */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .cat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .cat-card:hover { border-color: rgba(255,255,255,0.15); }
+
+  .cat-card .cat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .cat-card .cat-score {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .cat-card .cat-weight {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .cat-card .cat-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    margin-top: 12px;
+    overflow: hidden;
+  }
+
+  .cat-card .cat-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  /* Section Blocks */
+  .section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-bright);
+  }
+
+  .section-header .section-score {
+    margin-left: auto;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  /* Detail Bars */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .detail-item .detail-label {
+    font-size: 13px;
+    color: var(--text-dim);
+    min-width: 140px;
+  }
+
+  .detail-item .detail-bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .detail-item .detail-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  .detail-item .detail-score {
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 32px;
+    text-align: right;
+  }
+
+  /* Strengths / Weaknesses */
+  .sw-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .sw-col h3 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sw-col ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sw-col li {
+    font-size: 14px;
+    color: var(--text-dim);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .sw-col li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .strengths li::before { background: var(--green); }
+  .weaknesses li::before { background: var(--red); }
+
+  /* Recommendations */
+  .rec-list { margin-bottom: 24px; }
+
+  .rec-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+
+  .rec-item .rec-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .rec-item .priority-badge {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .priority-HIGH { background: var(--red-glow); color: var(--red); }
+  .priority-MEDIUM { background: var(--amber-glow); color: var(--amber); }
+  .priority-LOW { background: var(--cyan-glow); color: var(--cyan); }
+
+  .rec-item .rec-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-bright);
+  }
+
+  .rec-item .rec-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* Top Priorities */
+  .priorities-section { margin-bottom: 48px; }
+
+  .priority-card {
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .priority-rank {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+    background: var(--cyan-glow);
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.3);
+  }
+
+  .priority-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 6px;
+  }
+
+  .priority-content p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .priority-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .priority-tags span {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.05);
+    color: var(--text-dim);
+  }
+
+  /* Quick Wins */
+  .quick-wins {
+    background: var(--green-glow);
+    border: 1px solid rgba(52,211,153,0.2);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 48px;
+  }
+
+  .quick-wins h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+
+  .quick-wins ol {
+    padding-left: 20px;
+  }
+
+  .quick-wins li {
+    font-size: 14px;
+    color: var(--text);
+    padding: 6px 0;
+  }
+
+  /* Footer */
+  .audit-footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .audit-footer a { color: var(--cyan); text-decoration: none; }
+
+  /* Color helpers */
+  .color-cyan { color: var(--cyan); }
+  .color-amber { color: var(--amber); }
+  .color-green { color: var(--green); }
+  .color-red { color: var(--red); }
+  .color-purple { color: var(--purple); }
+
+  .fill-cyan { background: var(--cyan); }
+  .fill-amber { background: var(--amber); }
+  .fill-green { background: var(--green); }
+  .fill-red { background: var(--red); }
+  .fill-purple { background: var(--purple); }
+
+  .bg-cyan { background: var(--cyan); }
+  .bg-amber { background: var(--amber); }
+  .bg-green { background: var(--green); }
+  .bg-red { background: var(--red); }
+  .bg-purple { background: var(--purple); }
+
+  @media (max-width: 768px) {
+    .header-top { flex-direction: column; gap: 12px; }
+    .audit-date { text-align: left; }
+    .score-section { flex-direction: column; text-align: center; }
+    .categories-grid { grid-template-columns: 1fr 1fr; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .sw-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .categories-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="audit-header">
+    <div class="header-top">
+      <div class="brand-info">
+        <div class="subtitle">ClearGrade Marketing Audit</div>
+        <h1>Pasture &amp; Petal</h1>
+        <div class="url">pastureandpetal.com</div>
+      </div>
+      <div class="audit-date">
+        <div>March 29, 2026</div>
+        <div>Natural Skincare (Tallow-Based)</div>
+        <div>Shopify / DTC E-commerce</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Composite Score -->
+  <div class="score-section">
+    <div class="score-ring">
+      <svg width="180" height="180" viewBox="0 0 180 180">
+        <circle class="bg" cx="90" cy="90" r="78" />
+        <circle class="progress" cx="90" cy="90" r="78" stroke-dasharray="490" stroke-dashoffset="270" />
+      </svg>
+      <div class="score-text">
+        <div class="score-number">45</div>
+        <div class="score-grade">D+</div>
+      </div>
+    </div>
+    <div class="score-summary">
+      <h2>Marketing Score: 45 / 100</h2>
+      <p>Pasture &amp; Petal has a compelling farm-to-skin brand story, a well-developed 21-SKU product catalog, and competitive pricing &mdash; but critical gaps in social proof, SEO, content marketing, and online visibility are severely limiting growth. The brand is effectively invisible to the majority of potential customers who discover tallow skincare through search, social media, or editorial content. The good news: several high-impact fixes require minimal effort and can drive immediate improvement.</p>
+    </div>
+  </div>
+
+  <!-- Category Overview -->
+  <div class="categories-grid">
+    <div class="cat-card">
+      <div class="cat-label">Content &amp; Messaging</div>
+      <div class="cat-score color-cyan">52</div>
+      <div class="cat-weight">25% weight</div>
+      <div class="cat-bar"><div class="cat-bar-fill fill-cyan" style="width:52%"></div></div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-label">Conversion Optimization</div>
+      <div class="cat-score color-red">38</div>
+      <div class="cat-weight">20% weight</div>
+      <div class="cat-bar"><div class="cat-bar-fill fill-red" style="width:38%"></div></div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-label">SEO &amp; Discoverability</div>
+      <div class="cat-score color-red">32</div>
+      <div class="cat-weight">20% weight</div>
+      <div class="cat-bar"><div class="cat-bar-fill fill-red" style="width:32%"></div></div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-label">Competitive Positioning</div>
+      <div class="cat-score color-amber">52</div>
+      <div class="cat-weight">15% weight</div>
+      <div class="cat-bar"><div class="cat-bar-fill fill-amber" style="width:52%"></div></div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-label">Brand &amp; Trust</div>
+      <div class="cat-score color-amber">52</div>
+      <div class="cat-weight">10% weight</div>
+      <div class="cat-bar"><div class="cat-bar-fill fill-amber" style="width:52%"></div></div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-label">Growth &amp; Strategy</div>
+      <div class="cat-score color-amber">45</div>
+      <div class="cat-weight">10% weight</div>
+      <div class="cat-bar"><div class="cat-bar-fill fill-amber" style="width:45%"></div></div>
+    </div>
+  </div>
+
+  <!-- Top 5 Priorities -->
+  <div class="priorities-section">
+    <div class="section-header">
+      <div class="dot" style="background:var(--cyan)"></div>
+      <h2>Top 5 Priorities</h2>
+    </div>
+
+    <div class="priority-card">
+      <div class="priority-rank">1</div>
+      <div class="priority-content">
+        <h3>Add Social Proof &mdash; Reviews, Testimonials, Star Ratings</h3>
+        <p>Activate the already-installed Fera reviews integration. Send post-purchase emails requesting reviews. Display star ratings on all product cards and a testimonial section on the homepage. This is the single highest-impact, lowest-effort improvement available.</p>
+        <div class="priority-tags"><span>HIGH impact</span><span>LOW effort</span><span>Content</span><span>Conversion</span><span>Trust</span></div>
+      </div>
+    </div>
+
+    <div class="priority-card">
+      <div class="priority-rank">2</div>
+      <div class="priority-content">
+        <h3>Fix On-Page SEO Fundamentals</h3>
+        <p>Write unique meta titles and descriptions for all pages. Fix the &lsquo;My Store&rsquo; brand in schema markup. Consolidate H1 tags. Add Open Graph meta tags. These are quick Shopify admin fixes with outsized search visibility impact.</p>
+        <div class="priority-tags"><span>HIGH impact</span><span>LOW effort</span><span>SEO</span></div>
+      </div>
+    </div>
+
+    <div class="priority-card">
+      <div class="priority-rank">3</div>
+      <div class="priority-content">
+        <h3>Launch TikTok and Strengthen Instagram Presence</h3>
+        <p>Tallow skincare is trending massively on TikTok. Brynn&rsquo;s authentic farm-to-skin story is perfectly suited for short-form video. Start posting 3-4x weekly. Link social accounts from the website. Consolidate Instagram handles.</p>
+        <div class="priority-tags"><span>HIGH impact</span><span>MEDIUM effort</span><span>Trust</span><span>Competitive</span><span>Growth</span></div>
+      </div>
+    </div>
+
+    <div class="priority-card">
+      <div class="priority-rank">4</div>
+      <div class="priority-content">
+        <h3>Start a Tallow Education Blog</h3>
+        <p>The /blogs/news section exists but is empty. Publish 2-4 articles monthly targeting tallow skincare search queries. This captures organic traffic, builds authority, and differentiates from competitors who rely solely on social.</p>
+        <div class="priority-tags"><span>HIGH impact</span><span>MEDIUM effort</span><span>SEO</span><span>Content</span></div>
+      </div>
+    </div>
+
+    <div class="priority-card">
+      <div class="priority-rank">5</div>
+      <div class="priority-content">
+        <h3>Implement Email Marketing Automation</h3>
+        <p>Build a welcome sequence with first-purchase incentive, post-purchase flow with review requests, and replenishment reminders. Promote subscribe-and-save. Email is the highest-ROI channel for DTC skincare.</p>
+        <div class="priority-tags"><span>HIGH impact</span><span>MEDIUM effort</span><span>Conversion</span><span>Growth</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Wins -->
+  <div class="quick-wins">
+    <h2>10 Quick Wins (Implement This Week)</h2>
+    <ol>
+      <li>Fix shipping threshold inconsistency ($100 on homepage should be $80)</li>
+      <li>Update Shopify store name from &lsquo;My Store&rsquo; to &lsquo;Pasture &amp; Petal&rsquo; in settings</li>
+      <li>Add social media links to website footer</li>
+      <li>Enable Fera reviews display on homepage and product pages</li>
+      <li>Add a 10% first-order discount popup for email capture</li>
+      <li>Replace &lsquo;Shop now&rsquo; CTA with benefit-driven copy</li>
+      <li>Add trust badge icons below add-to-cart buttons</li>
+      <li>Write meta descriptions for homepage and top 5 product pages</li>
+      <li>Set up Google Business Profile for Fiddlers Green Farm</li>
+      <li>Consolidate Instagram to single handle and link from website</li>
+    </ol>
+  </div>
+
+  <!-- ==================== CONTENT & MESSAGING ==================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="dot" style="background:var(--cyan)"></div>
+      <h2>Content &amp; Messaging</h2>
+      <div class="section-score color-cyan">52 / 100</div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">Headline Clarity</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:70%"></div></div>
+        <span class="detail-score color-cyan">7/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Value Proposition</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-amber" style="width:50%"></div></div>
+        <span class="detail-score color-amber">5/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Copy Quality</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:60%"></div></div>
+        <span class="detail-score color-cyan">6/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">CTA Effectiveness</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:40%"></div></div>
+        <span class="detail-score color-red">4/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Content Depth</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:40%"></div></div>
+        <span class="detail-score color-red">4/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Brand Voice</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:70%"></div></div>
+        <span class="detail-score color-cyan">7/10</span>
+      </div>
+    </div>
+
+    <div class="sw-grid">
+      <div class="sw-col strengths">
+        <h3><span style="color:var(--green)">Strengths</span></h3>
+        <ul>
+          <li>Farm-to-skin authenticity with named farm and ancestral traditions</li>
+          <li>Effective &ldquo;Why Tallow?&rdquo; educational content addresses primary objections</li>
+          <li>Creative, evocative product naming reinforces botanical positioning</li>
+          <li>Well-organized 21-SKU catalog across face, body, lip, specialty, bundles</li>
+          <li>Comprehensive 16-question FAQ demonstrates transparency</li>
+          <li>Clear hero messaging communicates core differentiator immediately</li>
+        </ul>
+      </div>
+      <div class="sw-col weaknesses">
+        <h3><span style="color:var(--red)">Weaknesses</span></h3>
+        <ul>
+          <li>Zero social proof on homepage &mdash; no reviews, ratings, or testimonials</li>
+          <li>Shipping threshold inconsistency: $100 on homepage vs $80 in policy</li>
+          <li>Generic email signup with no incentive to subscribe</li>
+          <li>No social media links visible anywhere on site</li>
+          <li>Product cards lack persuasive descriptions and ingredient storytelling</li>
+          <li>No blog or content marketing presence for organic search</li>
+          <li>About page missing visual storytelling (photos of founder, farm, process)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px; font-weight:600; color:var(--text-bright); margin-bottom:12px;">Recommendations</h3>
+    <div class="rec-list">
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Add social proof to homepage immediately</span></div>
+        <div class="rec-desc">Place 3-5 customer testimonials with star ratings below featured products. Enable Fera reviews on all product pages. Even 10-15 reviews per top seller dramatically increases conversion for unfamiliar skincare brands.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Fix shipping threshold inconsistency</span></div>
+        <div class="rec-desc">Reconcile $100 (homepage) vs $80 (policy). Use the lower $80 figure and add a dynamic cart progress bar showing distance to free shipping.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Replace generic email signup with incentive-driven opt-in</span></div>
+        <div class="rec-desc">Offer 10-15% first-order discount or free &ldquo;Tallow Skincare Starter Guide&rdquo; PDF. Skincare DTC brands see 3-5x higher signup rates with tangible incentives.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Launch a blog for SEO traffic</span></div>
+        <div class="rec-desc">Monthly cadence of 2-4 articles targeting &ldquo;tallow skincare benefits,&rdquo; &ldquo;grass-fed tallow for face,&rdquo; &ldquo;natural skincare for sensitive skin.&rdquo; Existing FAQ content can be expanded into full articles.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-MEDIUM">MEDIUM</span><span class="rec-title">Enrich product copy with sensory storytelling</span></div>
+        <div class="rec-desc">Lead with a sensory hook, list key active ingredients with benefits, include usage instructions and skin type suitability. Critical for premium-priced niche products.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-MEDIUM">MEDIUM</span><span class="rec-title">Strengthen hero CTA with guided entry point</span></div>
+        <div class="rec-desc">Add a skin quiz or &ldquo;New to tallow?&rdquo; pathway. For a niche category, guided entry reduces friction and builds confidence before the cart.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-MEDIUM">MEDIUM</span><span class="rec-title">Humanize About page with visual storytelling</span></div>
+        <div class="rec-desc">Add photos of Brynn formulating, the farm, cattle grazing, production process. For a farm-to-skin brand, showing the source is the most powerful trust signal.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CONVERSION OPTIMIZATION ==================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="dot" style="background:var(--red)"></div>
+      <h2>Conversion Optimization</h2>
+      <div class="section-score color-red">38 / 100</div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">CTA Design</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:40%"></div></div>
+        <span class="detail-score color-red">4/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Social Proof</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:10%"></div></div>
+        <span class="detail-score color-red">1/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Friction Reduction</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-amber" style="width:50%"></div></div>
+        <span class="detail-score color-amber">5/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Urgency / Scarcity</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:10%"></div></div>
+        <span class="detail-score color-red">1/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Checkout Flow</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:60%"></div></div>
+        <span class="detail-score color-cyan">6/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Lead Capture</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:30%"></div></div>
+        <span class="detail-score color-red">3/10</span>
+      </div>
+    </div>
+
+    <div class="sw-grid">
+      <div class="sw-col strengths">
+        <h3><span style="color:var(--green)">Strengths</span></h3>
+        <ul>
+          <li>Accessible $8 entry point (Lip Butter) drives trial purchases</li>
+          <li>Free shipping at $80 encourages cart upsizing</li>
+          <li>Add-to-cart buttons on homepage reduce clicks to purchase</li>
+          <li>Accelerated checkout (Shop Pay, Apple Pay, Google Pay) enabled</li>
+          <li>Recharge subscription platform ready for recurring revenue</li>
+        </ul>
+      </div>
+      <div class="sw-col weaknesses">
+        <h3><span style="color:var(--red)">Weaknesses</span></h3>
+        <ul>
+          <li>Zero social proof &mdash; no reviews, ratings, testimonials, or UGC</li>
+          <li>No urgency or scarcity elements anywhere on site</li>
+          <li>Generic CTA copy (&ldquo;Shop now&rdquo;) lacks emotional pull</li>
+          <li>Email signup offers no tangible incentive</li>
+          <li>Return policy vague: &ldquo;reach out via contact page&rdquo;</li>
+          <li>No trust signals near purchase decision points</li>
+          <li>No cross-sell or bundle suggestions on homepage</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px; font-weight:600; color:var(--text-bright); margin-bottom:12px;">Recommendations</h3>
+    <div class="rec-list">
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Add customer reviews and star ratings to product cards</span></div>
+        <div class="rec-desc">Display star ratings on every product card. Feature 2-3 rotating testimonials with photos between products and email signup.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Offer first-purchase incentive on email signup</span></div>
+        <div class="rec-desc">10-15% off first order in exchange for email. Use a timed popup (15-second delay or exit-intent) rather than only the footer form.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Add trust badges near add-to-cart buttons</span></div>
+        <div class="rec-desc">Icons: 100% Grass-Fed | Made in Maryland | 30-Day Satisfaction Guarantee. Reduces perceived risk at the decision point.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Implement clear 30-day satisfaction guarantee</span></div>
+        <div class="rec-desc">Replace vague &ldquo;reach out via contact page&rdquo; with explicit guarantee displayed on product pages, cart, and checkout. Can lift conversion 5-15%.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-MEDIUM">MEDIUM</span><span class="rec-title">Display free shipping progress bar in cart</span></div>
+        <div class="rec-desc">&ldquo;You're $22 away from free shipping!&rdquo; with progress bar in slide-out cart. Proven to increase AOV 15-25% in DTC e-commerce.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-MEDIUM">MEDIUM</span><span class="rec-title">Add starter bundle promotion on homepage</span></div>
+        <div class="rec-desc">Curated starter set (Perennial Glow + Lip Butter + sample) at slight discount. Reduces decision fatigue and pushes past free shipping threshold.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-MEDIUM">MEDIUM</span><span class="rec-title">Promote Subscribe &amp; Save on featured products</span></div>
+        <div class="rec-desc">Add &ldquo;Subscribe &amp; Save 15%&rdquo; toggle on product cards. Skincare is high-replenishment &mdash; visible subscriptions capture higher-LTV customers.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SEO & DISCOVERABILITY ==================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="dot" style="background:var(--red)"></div>
+      <h2>SEO &amp; Discoverability</h2>
+      <div class="section-score color-red">32 / 100</div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">On-Page SEO</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:30%"></div></div>
+        <span class="detail-score color-red">3/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Technical SEO</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-amber" style="width:50%"></div></div>
+        <span class="detail-score color-amber">5/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Content Strategy</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:10%"></div></div>
+        <span class="detail-score color-red">1/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Site Architecture</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-amber" style="width:50%"></div></div>
+        <span class="detail-score color-amber">5/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Local SEO</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:10%"></div></div>
+        <span class="detail-score color-red">1/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Mobile Optimization</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:60%"></div></div>
+        <span class="detail-score color-cyan">6/10</span>
+      </div>
+    </div>
+
+    <div class="sw-grid">
+      <div class="sw-col strengths">
+        <h3><span style="color:var(--green)">Strengths</span></h3>
+        <ul>
+          <li>Shopify auto-generates valid XML sitemap</li>
+          <li>Product pages include structured Product schema</li>
+          <li>Clean, keyword-rich URL slugs</li>
+          <li>Primary H1 targets money keyword</li>
+          <li>Well-configured robots.txt</li>
+          <li>Backlinks from Faire and Awesome Foundation</li>
+        </ul>
+      </div>
+      <div class="sw-col weaknesses">
+        <h3><span style="color:var(--red)">Weaknesses</span></h3>
+        <ul>
+          <li>Only ~4 pages indexed by Google despite 20+ product pages</li>
+          <li>Homepage title is just &ldquo;Pasture &amp; Petal&rdquo; with no keywords</li>
+          <li>Meta descriptions absent across the site</li>
+          <li>Multiple H1 tags on homepage dilute keyword signal</li>
+          <li>Zero blog content &mdash; /blogs/news exists but is empty</li>
+          <li>Not listed on any &ldquo;best tallow skincare&rdquo; roundup articles</li>
+          <li>Product schema uses &ldquo;My Store&rdquo; instead of brand name</li>
+          <li>No Google Business Profile for farm-based business</li>
+          <li>Extremely low domain authority with almost no backlinks</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px; font-weight:600; color:var(--text-bright); margin-bottom:12px;">Recommendations</h3>
+    <div class="rec-list">
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Write unique meta titles and descriptions for every page</span></div>
+        <div class="rec-desc">Homepage: &ldquo;Pasture &amp; Petal | 100% Grass-Fed Tallow Skincare &mdash; Handmade in Maryland.&rdquo; Each product needs a 150-160 char meta description with ingredients and benefits.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Fix Product schema &mdash; replace &lsquo;My Store&rsquo; with &lsquo;Pasture &amp; Petal&rsquo;</span></div>
+        <div class="rec-desc">Update in Shopify Admin &gt; Settings &gt; General. This undermines rich snippet eligibility and brand entity recognition.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Consolidate to single H1 per page</span></div>
+        <div class="rec-desc">Keep &ldquo;100% Grass-Fed Tallow Skincare&rdquo; as the H1, demote &ldquo;Embrace Simplicity&rdquo; and &ldquo;Why Tallow?&rdquo; to H2.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Set up Google Business Profile</span></div>
+        <div class="rec-desc">Claim GBP for Fiddlers Green Farm, Taneytown, MD. Enables Google Maps visibility, local pack rankings, and review collection.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Add Open Graph and Twitter Card meta tags</span></div>
+        <div class="rec-desc">Every page needs og:title, og:description, og:image, og:url, twitter:card. Social sharing previews are currently broken.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-MEDIUM">MEDIUM</span><span class="rec-title">Pursue inclusion in tallow skincare roundup articles</span></div>
+        <div class="rec-desc">Pitch to The Good Trade, MindBodyGreen, SkinSort, Wellness Mama. The farm story and Awesome Foundation grant make a compelling editorial angle.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-MEDIUM">MEDIUM</span><span class="rec-title">Write descriptive alt text for all product images</span></div>
+        <div class="rec-desc">Replace &ldquo;Bare Balm image 3&rdquo; with &ldquo;Bare Balm grass-fed tallow moisturizer in amber jar.&rdquo; Improves image search and accessibility.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== COMPETITIVE POSITIONING ==================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="dot" style="background:var(--amber)"></div>
+      <h2>Competitive Positioning</h2>
+      <div class="section-score color-amber">52 / 100</div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">Differentiation</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:70%"></div></div>
+        <span class="detail-score color-cyan">7/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Pricing</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-green" style="width:80%"></div></div>
+        <span class="detail-score color-green">8/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Brand Positioning</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:60%"></div></div>
+        <span class="detail-score color-cyan">6/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Online Visibility</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:20%"></div></div>
+        <span class="detail-score color-red">2/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Product Range</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:70%"></div></div>
+        <span class="detail-score color-cyan">7/10</span>
+      </div>
+    </div>
+
+    <p style="font-size:14px; color:var(--text-dim); margin-bottom:24px;">
+      <strong style="color:var(--text-bright)">Market context:</strong> The tallow balm segment is $277-352M (2025), growing at 8.3% CAGR through 2035. North America holds 47.4% market share. Key trends include ancestral skincare going mainstream, clean beauty adoption, and TikTok/Instagram driving virality.
+    </p>
+
+    <div class="sw-grid">
+      <div class="sw-col strengths">
+        <h3><span style="color:var(--green)">Strengths vs. Competitors</span></h3>
+        <ul>
+          <li>Dual farm-sourced ingredients (tallow + raw honey) unmatched by competitors</li>
+          <li>Competitive pricing undercuts Primally Pure and Toups by 15-30%</li>
+          <li>21 SKUs rivals larger brands&rsquo; product breadth</li>
+          <li>Specialty products (pregnancy, nursing, men&rsquo;s) carve underserved niches</li>
+          <li>No-water formulation is a genuine differentiator</li>
+          <li>Awesome Foundation grant provides third-party validation</li>
+        </ul>
+      </div>
+      <div class="sw-col weaknesses">
+        <h3><span style="color:var(--red)">Weaknesses vs. Competitors</span></h3>
+        <ul>
+          <li>Social following: &lt;2K vs Primally Pure 563K, Toups 122K, Ancestral 109K</li>
+          <li>No press coverage vs competitors in US Weekly, Yahoo News, Real Simple</li>
+          <li>US-only shipping vs competitors serving international markets</li>
+          <li>Zero visible customer reviews vs Nefertem&rsquo;s 10,000+</li>
+          <li>No TikTok presence despite tallow skincare trending on platform</li>
+          <li>Very low domain authority compared to established competitors</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== BRAND & TRUST ==================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="dot" style="background:var(--purple)"></div>
+      <h2>Brand &amp; Trust</h2>
+      <div class="section-score color-purple">52 / 100</div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">Brand Consistency</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:70%"></div></div>
+        <span class="detail-score color-cyan">7/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Trust Signals</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:30%"></div></div>
+        <span class="detail-score color-red">3/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Social Proof</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:20%"></div></div>
+        <span class="detail-score color-red">2/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Visual Identity</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:70%"></div></div>
+        <span class="detail-score color-cyan">7/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Brand Story</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-green" style="width:80%"></div></div>
+        <span class="detail-score color-green">8/10</span>
+      </div>
+    </div>
+
+    <div class="sw-grid">
+      <div class="sw-col strengths">
+        <h3><span style="color:var(--green)">Strengths</span></h3>
+        <ul>
+          <li>Authentic founder story rooted in farm ownership &mdash; strongest brand asset</li>
+          <li>Consistent visual identity: earth tones, pastoral imagery, clean typography</li>
+          <li>Educational, wellness-focused brand voice differentiates from generic skincare</li>
+          <li>Strong tagline hierarchy combining functional and aspirational messaging</li>
+        </ul>
+      </div>
+      <div class="sw-col weaknesses">
+        <h3><span style="color:var(--red)">Weaknesses</span></h3>
+        <ul>
+          <li>No customer reviews or testimonials visible anywhere</li>
+          <li>Social media links missing from website despite having Instagram</li>
+          <li>Fera reviews integration installed but not surfaced</li>
+          <li>Fragmented Instagram (two handles found)</li>
+          <li>No TikTok, certifications, or press mentions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== GROWTH & STRATEGY ==================== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="dot" style="background:var(--amber)"></div>
+      <h2>Growth &amp; Strategy</h2>
+      <div class="section-score color-amber">45 / 100</div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">Pricing Strategy</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:70%"></div></div>
+        <span class="detail-score color-cyan">7/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Growth Channels</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:30%"></div></div>
+        <span class="detail-score color-red">3/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Retention Strategy</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:40%"></div></div>
+        <span class="detail-score color-red">4/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Expansion</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-cyan" style="width:60%"></div></div>
+        <span class="detail-score color-cyan">6/10</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Referral Program</span>
+        <div class="detail-bar"><div class="detail-bar-fill bg-red" style="width:20%"></div></div>
+        <span class="detail-score color-red">2/10</span>
+      </div>
+    </div>
+
+    <div class="sw-grid">
+      <div class="sw-col strengths">
+        <h3><span style="color:var(--green)">Strengths</span></h3>
+        <ul>
+          <li>Diversified 21-SKU catalog with multiple entry points</li>
+          <li>Smart niche targeting: pregnancy, nursing, men&rsquo;s grooming</li>
+          <li>Wholesale on Faire for B2B diversification</li>
+          <li>Affiliate (GoAffPro) and subscription (Recharge) infrastructure in place</li>
+          <li>Accessible $8-$79 price range</li>
+        </ul>
+      </div>
+      <div class="sw-col weaknesses">
+        <h3><span style="color:var(--red)">Weaknesses</span></h3>
+        <ul>
+          <li>US shipping only limits addressable market</li>
+          <li>No evidence of email marketing automation</li>
+          <li>Subscription not visibly promoted despite being enabled</li>
+          <li>No active influencer partnerships via affiliate program</li>
+          <li>Missing TikTok &mdash; highest organic ROI channel for tallow skincare</li>
+          <li>No customer referral program</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px; font-weight:600; color:var(--text-bright); margin-bottom:12px;">Recommendations</h3>
+    <div class="rec-list">
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Launch TikTok content strategy</span></div>
+        <div class="rec-desc">3-4 weekly posts: farm behind-the-scenes, ingredient education, product demos, founder story. Tallow skincare has millions of TikTok views &mdash; the authentic farm footage is a massive content advantage.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Implement post-purchase email automation</span></div>
+        <div class="rec-desc">5-email sequence: confirmation with brand story, shipping + usage tips, day 7 review request, day 21 cross-sell, day 45 replenishment reminder with subscribe-and-save offer.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-HIGH">HIGH</span><span class="rec-title">Promote Subscribe-and-Save as default purchase option</span></div>
+        <div class="rec-desc">10-15% subscriber discount on all replenishable products. Target 30%+ subscription revenue within 12 months.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-MEDIUM">MEDIUM</span><span class="rec-title">Activate affiliate program with micro-influencers</span></div>
+        <div class="rec-desc">20-30 micro-influencers (5K-50K followers) in ancestral health, natural skincare, and homesteading niches. 15-20% commission + product seeding.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-header"><span class="priority-badge priority-MEDIUM">MEDIUM</span><span class="rec-title">Create segment-targeted bundles</span></div>
+        <div class="rec-desc">New Mom Bundle, His &amp; Hers Bundle, $25 Starter Kit for trial. Bundles increase AOV 20-35% and reduce decision paralysis.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="audit-footer">
+    <p>Generated by <a href="https://cleargrade.co">ClearGrade</a> &mdash; AI-Powered Marketing Intelligence</p>
+    <p style="margin-top:4px;">Audit date: March 29, 2026 &middot; pastureandpetal.com</p>
+  </div>
+
+</div>
+</body>
+</html>

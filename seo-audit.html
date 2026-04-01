@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Audit — Pasture &amp; Petal | ClearGrade</title>
+<style>
+  :root {
+    --navy: #0f1a2e;
+    --navy-light: #162240;
+    --cyan: #00d4ff;
+    --cyan-glow: rgba(0,212,255,0.15);
+    --amber: #f5a623;
+    --amber-glow: rgba(245,166,35,0.15);
+    --green: #34d399;
+    --green-glow: rgba(52,211,153,0.15);
+    --red: #f87171;
+    --red-glow: rgba(248,113,113,0.15);
+    --purple: #a78bfa;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --text-bright: #f8fafc;
+    --border: rgba(255,255,255,0.08);
+    --card-bg: rgba(255,255,255,0.03);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  .audit-header {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .brand-info .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .brand-info h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-bright);
+  }
+
+  .brand-info .url {
+    font-size: 14px;
+    color: var(--cyan);
+    margin-top: 8px;
+  }
+
+  .audit-date {
+    font-size: 13px;
+    color: var(--text-dim);
+    text-align: right;
+  }
+
+  /* Score */
+  .score-banner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 32px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 40px;
+  }
+
+  .score-big {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .score-big small {
+    font-size: 24px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  .score-desc { flex: 1; }
+
+  .score-desc h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 8px;
+  }
+
+  .score-desc p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+  }
+
+  th {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+
+  td {
+    font-size: 14px;
+    color: var(--text);
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .status-pass {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .status-fail {
+    color: var(--red);
+    font-weight: 600;
+  }
+
+  .status-warn {
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  .status-na {
+    color: var(--text-dim);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 8px;
+  }
+
+  .card p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .card .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .badge-high { background: var(--red-glow); color: var(--red); }
+  .badge-medium { background: var(--amber-glow); color: var(--amber); }
+  .badge-low { background: var(--cyan-glow); color: var(--cyan); }
+
+  /* Keyword table */
+  .keyword-table td:nth-child(3),
+  .keyword-table td:nth-child(4) {
+    text-align: center;
+  }
+
+  /* Score bars */
+  .score-bars { margin-bottom: 32px; }
+
+  .score-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .score-bar-label {
+    font-size: 14px;
+    color: var(--text-dim);
+    min-width: 180px;
+  }
+
+  .score-bar-track {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+  }
+
+  .score-bar-value {
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 48px;
+    text-align: right;
+  }
+
+  /* Footer */
+  .audit-footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .audit-footer a { color: var(--cyan); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .header-top { flex-direction: column; gap: 12px; }
+    .score-banner { flex-direction: column; text-align: center; }
+    table { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="audit-header">
+    <div class="header-top">
+      <div class="brand-info">
+        <div class="subtitle">ClearGrade SEO Audit</div>
+        <h1>Pasture &amp; Petal</h1>
+        <div class="url">pastureandpetal.com</div>
+      </div>
+      <div class="audit-date">
+        <div>March 29, 2026</div>
+        <div>Platform: Shopify</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Score -->
+  <div class="score-banner">
+    <div class="score-big">32 <small>/ 100</small></div>
+    <div class="score-desc">
+      <h2>SEO Score: Needs Significant Work</h2>
+      <p>Pasture &amp; Petal has major SEO gaps across on-page optimization, content strategy, and local search. Shopify provides a solid technical foundation, but the site is underutilizing it. Only ~4 pages are indexed by Google despite 20+ products. There is zero blog content, thin meta tags, broken schema markup, and no Google Business Profile. The good news: most fixes are straightforward Shopify admin changes that can be implemented within days.</p>
+    </div>
+  </div>
+
+  <!-- Dimension Scores -->
+  <div class="section">
+    <h2>SEO Dimensions</h2>
+    <div class="score-bars">
+      <div class="score-bar-item">
+        <span class="score-bar-label">On-Page SEO</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:30%; background:var(--red)"></div></div>
+        <span class="score-bar-value" style="color:var(--red)">3/10</span>
+      </div>
+      <div class="score-bar-item">
+        <span class="score-bar-label">Technical SEO</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:50%; background:var(--amber)"></div></div>
+        <span class="score-bar-value" style="color:var(--amber)">5/10</span>
+      </div>
+      <div class="score-bar-item">
+        <span class="score-bar-label">Content Strategy</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:10%; background:var(--red)"></div></div>
+        <span class="score-bar-value" style="color:var(--red)">1/10</span>
+      </div>
+      <div class="score-bar-item">
+        <span class="score-bar-label">Site Architecture</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:50%; background:var(--amber)"></div></div>
+        <span class="score-bar-value" style="color:var(--amber)">5/10</span>
+      </div>
+      <div class="score-bar-item">
+        <span class="score-bar-label">Local SEO</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:10%; background:var(--red)"></div></div>
+        <span class="score-bar-value" style="color:var(--red)">1/10</span>
+      </div>
+      <div class="score-bar-item">
+        <span class="score-bar-label">Mobile Optimization</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:60%; background:var(--cyan)"></div></div>
+        <span class="score-bar-value" style="color:var(--cyan)">6/10</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Technical Checklist -->
+  <div class="section">
+    <h2>Technical SEO Checklist</h2>
+    <table>
+      <thead>
+        <tr><th>Check</th><th>Status</th><th>Details</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SSL Certificate</td>
+          <td class="status-pass">PASS</td>
+          <td>HTTPS enabled via Shopify</td>
+        </tr>
+        <tr>
+          <td>XML Sitemap</td>
+          <td class="status-pass">PASS</td>
+          <td>Auto-generated by Shopify with product, page, collection, and blog sub-sitemaps</td>
+        </tr>
+        <tr>
+          <td>Robots.txt</td>
+          <td class="status-pass">PASS</td>
+          <td>Well-configured with appropriate disallows and sitemap reference</td>
+        </tr>
+        <tr>
+          <td>Mobile Responsive</td>
+          <td class="status-pass">PASS</td>
+          <td>Shopify theme has responsive breakpoints</td>
+        </tr>
+        <tr>
+          <td>Product Schema</td>
+          <td class="status-warn">WARN</td>
+          <td>Present but brand field reads &ldquo;My Store&rdquo; instead of &ldquo;Pasture &amp; Petal&rdquo;</td>
+        </tr>
+        <tr>
+          <td>Canonical Tags</td>
+          <td class="status-fail">FAIL</td>
+          <td>Missing or not properly implemented. Duplicate collection URLs: /collections/all, /collections/all-products, /category/all-products</td>
+        </tr>
+        <tr>
+          <td>Meta Titles</td>
+          <td class="status-fail">FAIL</td>
+          <td>Homepage is just &ldquo;Pasture &amp; Petal&rdquo; with no keywords. Product pages use thin &ldquo;Name &ndash; Pasture &amp; Petal&rdquo; pattern</td>
+        </tr>
+        <tr>
+          <td>Meta Descriptions</td>
+          <td class="status-fail">FAIL</td>
+          <td>Absent or empty across most pages</td>
+        </tr>
+        <tr>
+          <td>H1 Tags</td>
+          <td class="status-fail">FAIL</td>
+          <td>Homepage has 3 H1 tags (should be 1). Dilutes primary keyword signal</td>
+        </tr>
+        <tr>
+          <td>Open Graph Tags</td>
+          <td class="status-fail">FAIL</td>
+          <td>No og:title, og:description, og:image detected. Social sharing previews are broken</td>
+        </tr>
+        <tr>
+          <td>Twitter Card Tags</td>
+          <td class="status-fail">FAIL</td>
+          <td>No twitter:card meta tags detected</td>
+        </tr>
+        <tr>
+          <td>Image Alt Text</td>
+          <td class="status-fail">FAIL</td>
+          <td>Generic alt text (&ldquo;Bare Balm image 3&rdquo;) instead of descriptive keyword-rich alternatives</td>
+        </tr>
+        <tr>
+          <td>FAQ Schema</td>
+          <td class="status-fail">FAIL</td>
+          <td>16-question FAQ page has no FAQPage schema markup</td>
+        </tr>
+        <tr>
+          <td>Review Schema</td>
+          <td class="status-fail">FAIL</td>
+          <td>Fera reviews installed but zero reviews collected &mdash; no AggregateRating in schema</td>
+        </tr>
+        <tr>
+          <td>Google Business Profile</td>
+          <td class="status-fail">FAIL</td>
+          <td>No GBP detected for farm-based business in Taneytown, MD</td>
+        </tr>
+        <tr>
+          <td>Blog / Content</td>
+          <td class="status-fail">FAIL</td>
+          <td>/blogs/news exists in sitemap but contains zero published articles</td>
+        </tr>
+        <tr>
+          <td>URL Structure</td>
+          <td class="status-pass">PASS</td>
+          <td>Clean, keyword-rich slugs (/products/bare-balm, /products/perennial-glow)</td>
+        </tr>
+        <tr>
+          <td>CDN / Speed</td>
+          <td class="status-pass">PASS</td>
+          <td>Shopify CDN provides adequate delivery performance</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Indexation -->
+  <div class="section">
+    <h2>Google Indexation</h2>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Status</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Indexed Pages (site: search)</td>
+          <td class="status-fail">~4 pages</td>
+          <td>Should be 30-40+ (20 products + 4 static pages + collections + policies)</td>
+        </tr>
+        <tr>
+          <td>Domain Authority</td>
+          <td class="status-fail">Very Low</td>
+          <td>Minimal external backlink profile. Only Faire.com and awesomefoundation.org detected</td>
+        </tr>
+        <tr>
+          <td>Roundup / Editorial Presence</td>
+          <td class="status-fail">None</td>
+          <td>Not listed on any &ldquo;best tallow skincare&rdquo; articles (The Good Trade, SkinSort, PrettyOrganicGirl, WowMD)</td>
+        </tr>
+        <tr>
+          <td>Backlinks Detected</td>
+          <td class="status-warn">2-3</td>
+          <td>Faire wholesale listing, Awesome Foundation, Goose Ridge Soaps retail partner</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- On-Page Analysis -->
+  <div class="section">
+    <h2>On-Page SEO Analysis by Page</h2>
+    <table>
+      <thead>
+        <tr><th>Page</th><th>Title Tag</th><th>Meta Description</th><th>H1</th><th>Issues</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Homepage</strong></td>
+          <td class="status-fail">&ldquo;Pasture &amp; Petal&rdquo;</td>
+          <td class="status-fail">Empty</td>
+          <td class="status-warn">3 H1 tags</td>
+          <td>Title needs keywords. Consolidate to 1 H1. Add meta description.</td>
+        </tr>
+        <tr>
+          <td><strong>About</strong></td>
+          <td class="status-warn">Thin</td>
+          <td class="status-fail">Empty</td>
+          <td class="status-pass">1 H1</td>
+          <td>Title should include &ldquo;Our Farm Story&rdquo; or &ldquo;About Us&rdquo; + brand</td>
+        </tr>
+        <tr>
+          <td><strong>All Products</strong></td>
+          <td class="status-warn">Default</td>
+          <td class="status-fail">Empty</td>
+          <td class="status-pass">1 H1</td>
+          <td>Duplicate with /collections/all-products. Add canonical tag.</td>
+        </tr>
+        <tr>
+          <td><strong>FAQ</strong></td>
+          <td class="status-warn">Thin</td>
+          <td class="status-fail">Empty</td>
+          <td class="status-pass">1 H1</td>
+          <td>Missing FAQPage schema. Add structured data for rich snippets.</td>
+        </tr>
+        <tr>
+          <td><strong>Product Pages</strong></td>
+          <td class="status-warn">&ldquo;Name &ndash; Pasture &amp; Petal&rdquo;</td>
+          <td class="status-fail">Empty/Thin</td>
+          <td class="status-pass">1 H1</td>
+          <td>Titles need category modifiers. Descriptions need ingredients + benefits.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Keyword Opportunities -->
+  <div class="section">
+    <h2>Target Keyword Opportunities</h2>
+    <table class="keyword-table">
+      <thead>
+        <tr><th>Keyword</th><th>Intent</th><th>Competition</th><th>Priority</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>grass-fed tallow skincare</td>
+          <td>Commercial</td>
+          <td class="status-warn">Medium</td>
+          <td class="status-fail">Not ranking</td>
+        </tr>
+        <tr>
+          <td>tallow face cream</td>
+          <td>Commercial</td>
+          <td class="status-warn">Medium</td>
+          <td class="status-fail">Not ranking</td>
+        </tr>
+        <tr>
+          <td>tallow skincare benefits</td>
+          <td>Informational</td>
+          <td class="status-pass">Low</td>
+          <td class="status-fail">Not ranking</td>
+        </tr>
+        <tr>
+          <td>beef tallow for skin</td>
+          <td>Informational</td>
+          <td class="status-pass">Low</td>
+          <td class="status-fail">Not ranking</td>
+        </tr>
+        <tr>
+          <td>tallow vs retinol</td>
+          <td>Informational</td>
+          <td class="status-pass">Low</td>
+          <td class="status-fail">Not ranking</td>
+        </tr>
+        <tr>
+          <td>tallow balm for eczema</td>
+          <td>Informational</td>
+          <td class="status-pass">Low</td>
+          <td class="status-fail">Not ranking</td>
+        </tr>
+        <tr>
+          <td>natural skincare Maryland</td>
+          <td>Local</td>
+          <td class="status-pass">Low</td>
+          <td class="status-fail">Not ranking</td>
+        </tr>
+        <tr>
+          <td>tallow skincare for pregnancy</td>
+          <td>Commercial</td>
+          <td class="status-pass">Low</td>
+          <td class="status-fail">Not ranking</td>
+        </tr>
+        <tr>
+          <td>best tallow body balm</td>
+          <td>Commercial</td>
+          <td class="status-warn">Medium</td>
+          <td class="status-fail">Not ranking</td>
+        </tr>
+        <tr>
+          <td>magnesium body butter</td>
+          <td>Commercial</td>
+          <td class="status-warn">Medium</td>
+          <td class="status-fail">Not ranking</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px; color:var(--text-dim);">All keywords represent untapped opportunities. Pasture &amp; Petal does not appear in the top 50 results for any of these terms. Competitors like Primally Pure, Toups and Co, and Ancestral Cosmetics dominate these SERPs.</p>
+  </div>
+
+  <!-- Recommendations -->
+  <div class="section">
+    <h2>Prioritized Recommendations</h2>
+
+    <div class="card">
+      <span class="badge badge-high">HIGH PRIORITY</span>
+      <h3>1. Write Unique Meta Titles and Descriptions for Every Page</h3>
+      <p><strong>Current:</strong> Homepage title is just &ldquo;Pasture &amp; Petal.&rdquo; Product titles follow &ldquo;Name &ndash; Pasture &amp; Petal&rdquo; with no keywords. Meta descriptions are absent.</p>
+      <p><strong>Fix:</strong> Homepage: &ldquo;Pasture &amp; Petal | 100% Grass-Fed Tallow Skincare &mdash; Handmade in Maryland.&rdquo; Products: &ldquo;Perennial Glow Tallow Face Moisturizer | Grass-Fed, Vitamin-Rich | Pasture &amp; Petal.&rdquo; Each page needs a unique 150-160 character meta description.</p>
+      <p><strong>Impact:</strong> Directly improves click-through rates from search results and helps Google understand page topics.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-high">HIGH PRIORITY</span>
+      <h3>2. Fix Product Schema Markup</h3>
+      <p><strong>Current:</strong> Product structured data uses &ldquo;My Store&rdquo; as brand name (Shopify default).</p>
+      <p><strong>Fix:</strong> Update in Shopify Admin &gt; Settings &gt; General. Change store name to &ldquo;Pasture &amp; Petal.&rdquo; This propagates to all Product schema automatically.</p>
+      <p><strong>Impact:</strong> Enables proper brand entity recognition in Google Knowledge Graph and rich snippets.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-high">HIGH PRIORITY</span>
+      <h3>3. Consolidate to Single H1 Per Page</h3>
+      <p><strong>Current:</strong> Homepage has three H1 tags: &ldquo;100% GRASS-FED TALLOW SKINCARE,&rdquo; &ldquo;Embrace Simplicity,&rdquo; and &ldquo;Why Tallow?&rdquo;</p>
+      <p><strong>Fix:</strong> Keep only the first as H1. Change others to H2. Edit in Shopify theme code.</p>
+      <p><strong>Impact:</strong> Clarifies primary topic signal for crawlers.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-high">HIGH PRIORITY</span>
+      <h3>4. Set Up Google Business Profile</h3>
+      <p><strong>Current:</strong> No GBP despite being a farm-based business at Fiddlers Green Farm, Taneytown, Maryland.</p>
+      <p><strong>Fix:</strong> Claim GBP at business.google.com. Add LocalBusiness schema to website. Upload farm photos. Set business category to &ldquo;Skin Care Products Store&rdquo; or &ldquo;Health &amp; Beauty.&rdquo;</p>
+      <p><strong>Impact:</strong> Enables Google Maps visibility and local pack rankings with zero competition for &ldquo;tallow skincare Maryland.&rdquo;</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-high">HIGH PRIORITY</span>
+      <h3>5. Add Open Graph and Twitter Card Meta Tags</h3>
+      <p><strong>Current:</strong> No OG or Twitter tags detected. Social shares show generic or broken previews.</p>
+      <p><strong>Fix:</strong> Add to theme &lt;head&gt;: og:title, og:description, og:image, og:url, twitter:card for every page type.</p>
+      <p><strong>Impact:</strong> Social sharing previews become rich and branded, increasing click-through from social platforms.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-high">HIGH PRIORITY</span>
+      <h3>6. Launch Tallow Education Blog</h3>
+      <p><strong>Current:</strong> /blogs/news exists in sitemap but contains zero articles.</p>
+      <p><strong>Fix:</strong> Publish 2-4 articles monthly: &ldquo;Why Tallow Is the Closest Thing to Your Skin&rsquo;s Natural Oils,&rdquo; &ldquo;Tallow vs. Retinol: A Natural Alternative,&rdquo; &ldquo;Is Beef Tallow Good for Acne?&rdquo; &ldquo;Tallow Skincare During Pregnancy: What to Know.&rdquo;</p>
+      <p><strong>Impact:</strong> Captures informational search traffic, builds topical authority, creates internal linking opportunities to product pages.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-medium">MEDIUM PRIORITY</span>
+      <h3>7. Pursue Roundup Article Inclusions</h3>
+      <p><strong>Current:</strong> Not listed on any &ldquo;best tallow skincare&rdquo; articles. Competitors appear on The Good Trade, SkinSort, PrettyOrganicGirl, WowMD.</p>
+      <p><strong>Fix:</strong> Pitch to each publication with the farm story, Awesome Foundation grant, and woman-owned angles. Include product samples.</p>
+      <p><strong>Impact:</strong> Each inclusion builds a high-authority backlink and drives referral traffic from purchase-intent readers.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-medium">MEDIUM PRIORITY</span>
+      <h3>8. Write Descriptive Alt Text for All Product Images</h3>
+      <p><strong>Current:</strong> Generic alt text like &ldquo;Bare Balm image 3&rdquo; and &ldquo;Bare Balm image 4.&rdquo;</p>
+      <p><strong>Fix:</strong> Descriptive: &ldquo;Bare Balm grass-fed tallow face moisturizer with honey and calendula in amber glass jar.&rdquo;</p>
+      <p><strong>Impact:</strong> Improves Google Images rankings (significant for skincare) and WCAG accessibility compliance.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-medium">MEDIUM PRIORITY</span>
+      <h3>9. Resolve Duplicate Collection URLs</h3>
+      <p><strong>Current:</strong> /collections/all, /collections/all-products, and /category/all-products appear to serve similar content.</p>
+      <p><strong>Fix:</strong> Add canonical tags pointing to the preferred URL. 301 redirect duplicate paths.</p>
+      <p><strong>Impact:</strong> Prevents duplicate content dilution and consolidates ranking signals.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-medium">MEDIUM PRIORITY</span>
+      <h3>10. Add FAQ Schema Markup to FAQ Page</h3>
+      <p><strong>Current:</strong> 16 well-written FAQ questions with no FAQPage structured data.</p>
+      <p><strong>Fix:</strong> Add FAQPage JSON-LD schema. Each question/answer pair becomes eligible for rich snippet display in search results.</p>
+      <p><strong>Impact:</strong> FAQ rich results dramatically increase SERP real estate and click-through rates.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-low">LOW PRIORITY</span>
+      <h3>11. Create Standalone &ldquo;Why Tallow&rdquo; Landing Page</h3>
+      <p>Move educational content from homepage section to a dedicated /pages/why-tallow page optimized for &ldquo;tallow skincare benefits&rdquo; and related awareness queries. Link from homepage and product pages.</p>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-low">LOW PRIORITY</span>
+      <h3>12. Submit to Niche Directories</h3>
+      <p>Register on SkinSort, EWG Skin Deep, Think Dirty, Made Safe, and Maryland local business directories. Each listing creates a backlink and discovery channel.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="audit-footer">
+    <p>Generated by <a href="https://cleargrade.co">ClearGrade</a> &mdash; AI-Powered Marketing Intelligence</p>
+    <p style="margin-top:4px;">Audit date: March 29, 2026 &middot; pastureandpetal.com</p>
+  </div>
+
+</div>
+</body>
+</html>

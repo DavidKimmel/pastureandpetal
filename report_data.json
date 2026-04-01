@@ -1,0 +1,428 @@
+{
+  "audit_meta": {
+    "business_name": "Pasture & Petal",
+    "website": "https://www.pastureandpetal.com",
+    "industry": "Natural Skincare (Tallow-Based)",
+    "business_type": "E-commerce / DTC",
+    "platform": "Shopify",
+    "location": "Taneytown, Maryland (Fiddlers Green Farm)",
+    "founder": "Brynn",
+    "audit_date": "2026-03-29",
+    "audited_by": "ClearGrade AI Marketing Audit"
+  },
+  "composite_score": {
+    "score": 45,
+    "grade": "D+",
+    "max_score": 100,
+    "summary": "Pasture & Petal has a compelling farm-to-skin brand story, a well-developed 21-SKU product catalog, and competitive pricing — but critical gaps in social proof, SEO, content marketing, and online visibility are severely limiting growth. The brand is effectively invisible to the majority of potential customers who discover tallow skincare through search, social media, or editorial content."
+  },
+  "categories": [
+    {
+      "category": "Content & Messaging",
+      "score": 52,
+      "weight": 0.25,
+      "weighted_score": 13.0,
+      "strengths": [
+        "Strong brand identity rooted in farm-to-skin authenticity — founder story, named farm (Fiddlers Green), and ancestral traditions create genuine differentiation",
+        "Effective educational content in 'Why Tallow?' section addresses the primary objection new customers have about tallow-based skincare",
+        "Creative, evocative product naming (Perennial Glow, Rose Reverie, Luminous Leaf) reinforces the botanical brand positioning",
+        "Well-organized product catalog with 21 SKUs spanning face, body, lip, specialty, and bundles",
+        "Comprehensive FAQ section with 16 questions demonstrates transparency",
+        "Clear hero messaging immediately communicates the core differentiator"
+      ],
+      "weaknesses": [
+        "Zero social proof on homepage — no testimonials, reviews, star ratings, press mentions, or certification badges",
+        "Inconsistent shipping threshold: homepage says $100 but policy says $80",
+        "Email signup CTA is generic with no incentive",
+        "No social media links visible on the site",
+        "Product descriptions lack persuasive storytelling on homepage cards",
+        "Hero CTA 'Shop now' is generic for a niche product category requiring education",
+        "About page lacks visual storytelling (no photos of Brynn, farm, process)",
+        "No blog or content marketing presence"
+      ],
+      "recommendations": [
+        {"priority": "HIGH", "title": "Add social proof to homepage immediately", "description": "Place 3-5 customer testimonials with star ratings below featured products. Enable Fera reviews on all product pages."},
+        {"priority": "HIGH", "title": "Fix shipping threshold inconsistency", "description": "Reconcile $100 (homepage) vs $80 (policy). Use the $80 figure and add a dynamic cart progress bar."},
+        {"priority": "HIGH", "title": "Replace generic email signup with incentive-driven opt-in", "description": "Offer 10-15% first-order discount or free 'Tallow Skincare Starter Guide' PDF."},
+        {"priority": "HIGH", "title": "Launch a blog for SEO", "description": "Monthly cadence of 2-4 educational articles targeting 'tallow skincare benefits,' 'grass-fed tallow for face,' etc."},
+        {"priority": "MEDIUM", "title": "Enrich product page copy with sensory storytelling", "description": "Lead with sensory hooks, list key active ingredients with benefits, include usage instructions and skin type suitability."},
+        {"priority": "MEDIUM", "title": "Strengthen hero CTA with guided entry point", "description": "Add a skin quiz or 'New to tallow?' pathway for first-time visitors."},
+        {"priority": "MEDIUM", "title": "Humanize About page with visual storytelling", "description": "Add photos of Brynn formulating, the farm, cattle, production process."},
+        {"priority": "MEDIUM", "title": "Add visible social media links and integrate UGC", "description": "Add social icons to header/footer and embed an Instagram feed on homepage."},
+        {"priority": "LOW", "title": "Add trust badges on product pages", "description": "Icon strip: Grass-Fed Tallow, Handcrafted in MD, No Synthetics, Small Batch, Cruelty-Free."},
+        {"priority": "LOW", "title": "Create skincare quiz or product recommender", "description": "3-5 question quiz recommending personalized 2-3 product routine."}
+      ],
+      "details": {
+        "headline_clarity": {"score": 7, "assessment": "Hero headline is direct and communicates the differentiator, but speaks to product attributes rather than customer outcomes."},
+        "value_proposition": {"score": 5, "assessment": "Value prop is present but scattered. Farm provenance is the strongest differentiator but buried on About page."},
+        "copy_quality": {"score": 6, "assessment": "Brand voice is warm and nature-aligned. Product names are creative. But homepage copy is thin for a category requiring education."},
+        "cta_effectiveness": {"score": 4, "assessment": "CTAs are generic Shopify defaults. No secondary pathway for visitors not ready to purchase."},
+        "content_depth": {"score": 4, "assessment": "Why Tallow section and FAQ provide value, but no blog, ingredient deep-dives, or customer stories."},
+        "brand_voice_consistency": {"score": 7, "assessment": "Consistent warm, natural voice across homepage and About page. Breaks only in Shopify-default elements."}
+      }
+    },
+    {
+      "category": "Conversion Optimization",
+      "score": 38,
+      "weight": 0.20,
+      "weighted_score": 7.6,
+      "strengths": [
+        "Clean, focused hero with clear value proposition",
+        "Accessible price range with $8 entry point for trial purchases",
+        "Free shipping threshold at $80 encourages cart upsizing",
+        "Add-to-cart buttons on homepage featured products reduce clicks to purchase",
+        "Accelerated checkout (Shop Pay, Apple Pay, Google Pay) reduces friction",
+        "Recharge subscription platform enabled for recurring revenue",
+        "Cart with item counter provides persistent purchase feedback"
+      ],
+      "weaknesses": [
+        "Zero social proof on homepage",
+        "No urgency or scarcity elements anywhere",
+        "Generic CTA copy lacks emotional pull",
+        "Email signup offers no tangible incentive",
+        "No product reviews or ratings visible on featured product cards",
+        "Return policy is vague ('reach out via contact page')",
+        "No trust signals near purchase points",
+        "hCaptcha on email signup adds unnecessary friction",
+        "No cross-sell or bundle suggestions on homepage",
+        "Free shipping threshold not displayed near add-to-cart buttons"
+      ],
+      "recommendations": [
+        {"priority": "HIGH", "title": "Add customer reviews and star ratings to product cards", "description": "Install reviews app and display ratings on every product card. Feature 2-3 rotating testimonials."},
+        {"priority": "HIGH", "title": "Offer first-purchase incentive on email signup", "description": "10-15% off first order in exchange for email. Use timed popup or exit-intent."},
+        {"priority": "HIGH", "title": "Add trust badges near add-to-cart buttons", "description": "Display grass-fed sourced, handcrafted in Maryland, satisfaction guarantee as icons below purchase buttons."},
+        {"priority": "HIGH", "title": "Implement clear satisfaction guarantee", "description": "Create prominent 30-day satisfaction guarantee displayed on product pages, cart, and checkout."},
+        {"priority": "MEDIUM", "title": "Rewrite CTAs with benefit-driven copy", "description": "Replace 'Shop now' with 'Discover Your Glow' or 'Start Your Tallow Skincare Routine.'"},
+        {"priority": "MEDIUM", "title": "Display free shipping progress indicator in cart", "description": "Show progress bar: 'You're $22 away from free shipping!' in the slide-out cart."},
+        {"priority": "MEDIUM", "title": "Add homepage starter bundle promotion", "description": "Curated starter set at slight discount to reduce decision fatigue and push past free shipping threshold."},
+        {"priority": "MEDIUM", "title": "Promote subscription option on homepage", "description": "Add 'Subscribe & Save 15%' toggle on featured product cards."},
+        {"priority": "LOW", "title": "Add subtle urgency with seasonal/inventory signals", "description": "Small batch labels, seasonal editions, 'Back in stock' badges."},
+        {"priority": "LOW", "title": "Remove hCaptcha from email signup", "description": "Use honeypot fields instead. Reserve captcha for checkout and contact forms."}
+      ],
+      "details": {
+        "cta_design": {"score": 4, "assessment": "Functional but generic CTAs with no benefit-driven language or visual hierarchy."},
+        "social_proof": {"score": 1, "assessment": "Most critical gap. Zero reviews, testimonials, ratings, or UGC visible on homepage."},
+        "friction_reduction": {"score": 5, "assessment": "Accelerated checkout is strong. But hCaptcha, vague returns, and no guest checkout visibility add friction."},
+        "urgency_scarcity": {"score": 1, "assessment": "No urgency elements anywhere. Soft scarcity (small batch, seasonal) would be authentic."},
+        "checkout_flow": {"score": 6, "assessment": "Shopify checkout is solid. Accelerated options enabled. But no upsell, no guarantee visibility."},
+        "lead_capture": {"score": 3, "assessment": "Email form exists but no incentive, no popup, no lead magnet, no SMS capture."}
+      }
+    },
+    {
+      "category": "SEO & Discoverability",
+      "score": 32,
+      "weight": 0.20,
+      "weighted_score": 6.4,
+      "strengths": [
+        "Shopify auto-generates valid XML sitemap",
+        "Product pages include structured Product schema",
+        "Clean, keyword-rich URL slugs",
+        "Primary H1 targets money keyword: '100% GRASS-FED TALLOW SKINCARE'",
+        "Well-configured robots.txt",
+        "Present on Faire wholesale marketplace (backlink)",
+        "Awesome Foundation grant provides quality backlink",
+        "hCaptcha protects forms without harming SEO"
+      ],
+      "weaknesses": [
+        "Minimal Google index: only ~4 pages appearing despite 20+ product pages",
+        "Title tags are thin and non-descriptive (homepage is just 'Pasture & Petal')",
+        "Meta descriptions appear absent across the site",
+        "Multiple H1 tags on homepage dilute keyword signal",
+        "Zero blog content — /blogs/news exists but is empty",
+        "Zero presence on 'best tallow skincare' roundup lists",
+        "No Open Graph or Twitter Card meta tags",
+        "Product schema uses 'My Store' instead of 'Pasture & Petal'",
+        "Image alt text is generic ('Bare Balm image 3')",
+        "No canonical tags — duplicate content risk across collection URLs",
+        "No Google Business Profile despite being farm-based in Maryland",
+        "Fera reviews installed but zero reviews visible — missing review schema",
+        "Extremely low domain authority with almost no backlinks",
+        "Free shipping threshold inconsistency across pages"
+      ],
+      "recommendations": [
+        {"priority": "HIGH", "title": "Write unique meta titles and descriptions for every page", "description": "Homepage title should include keywords. Each product page needs 150-160 char meta description."},
+        {"priority": "HIGH", "title": "Launch tallow education blog", "description": "Publish 2-4 articles/month targeting 'tallow vs retinol,' 'beef tallow for acne,' 'grass-fed tallow benefits.'"},
+        {"priority": "HIGH", "title": "Fix Product schema — replace 'My Store' with 'Pasture & Petal'", "description": "Update in Shopify Admin > Settings > General or theme structured data template."},
+        {"priority": "HIGH", "title": "Consolidate to single H1 per page", "description": "Keep '100% Grass-Fed Tallow Skincare' as H1, demote others to H2."},
+        {"priority": "HIGH", "title": "Set up Google Business Profile", "description": "Claim GBP for Fiddlers Green Farm, Taneytown MD. Add LocalBusiness schema."},
+        {"priority": "HIGH", "title": "Add Open Graph and Twitter Card meta tags", "description": "Every page needs og:title, og:description, og:image, og:url, twitter:card."},
+        {"priority": "MEDIUM", "title": "Pursue inclusion in tallow skincare roundup articles", "description": "Pitch to The Good Trade, MindBodyGreen, SkinSort, Wellness Mama."},
+        {"priority": "MEDIUM", "title": "Write descriptive alt text for all product images", "description": "Replace 'Bare Balm image 3' with descriptive keyword-rich alt text."},
+        {"priority": "MEDIUM", "title": "Implement canonical tags for duplicate collection URLs", "description": "Resolve /collections/all vs /collections/all-products vs /category/all-products."},
+        {"priority": "MEDIUM", "title": "Activate customer reviews through Fera", "description": "Post-purchase email flow requesting reviews 7-14 days after delivery."},
+        {"priority": "LOW", "title": "Create dedicated ingredient and Why Tallow landing pages", "description": "Standalone pages optimized for awareness queries."},
+        {"priority": "LOW", "title": "Submit to niche directories", "description": "SkinSort, EWG Skin Deep, Think Dirty, Made Safe, Maryland business directories."}
+      ],
+      "details": {
+        "on_page_seo": {"score": 3, "assessment": "Thin title tags, absent meta descriptions, multiple H1s. Clean URLs are the bright spot."},
+        "technical_seo": {"score": 5, "assessment": "Shopify provides solid foundation. Issues: wrong brand in schema, missing canonicals, no OG tags."},
+        "content_strategy": {"score": 1, "assessment": "Weakest dimension. Zero blog content. FAQ not schema-marked. No ingredient guides or comparison content."},
+        "site_architecture": {"score": 5, "assessment": "Simple 4-page structure adequate for 21 SKUs. No category segmentation or internal linking strategy."},
+        "local_seo": {"score": 1, "assessment": "No Google Business Profile. No LocalBusiness schema. Zero local keyword targeting despite farm location."},
+        "mobile_optimization": {"score": 6, "assessment": "Shopify theme is responsive. Missing OG tags degrade mobile social sharing."}
+      }
+    },
+    {
+      "category": "Competitive Positioning",
+      "score": 52,
+      "weight": 0.15,
+      "weighted_score": 7.8,
+      "strengths": [
+        "Authentic farm-to-skin story with dual-ingredient provenance (tallow + raw honey) unmatched by competitors",
+        "Competitive pricing at $8-$79, undercutting Primally Pure and Toups and Co",
+        "Strong product breadth with 21 SKUs rivaling larger brands",
+        "Unique specialty products (Blissful Bump, Nip Nourish, Beard Balm) carving underserved niches",
+        "No-water formulation philosophy is a genuine differentiator",
+        "Woman-owned, small-batch, handcrafted positioning aligns with target values",
+        "Wholesale presence on Faire and local retail at Goose Ridge Soaps",
+        "Awesome Foundation grant recognition"
+      ],
+      "weaknesses": [
+        "Minimal social media: estimated <2K followers vs competitors at 100K-563K",
+        "No press coverage — competitors have US Weekly, Yahoo News, Real Simple features",
+        "US-only shipping limits addressable market",
+        "Subscription not visibly promoted despite Recharge being enabled",
+        "Zero customer review visibility on site",
+        "No TikTok presence despite tallow skincare's viral growth on the platform",
+        "Low SEO authority compared to established competitors",
+        "No third-party certifications visible"
+      ],
+      "competitors": [
+        {
+          "name": "Primally Pure",
+          "url": "https://primallypure.com",
+          "price_range": "$12-$110",
+          "product_count": "50+",
+          "usp": "Regenerative organic farm-sourced tallow; established clean beauty brand with broad product line",
+          "social_presence": "Instagram: 563K, TikTok: 48K",
+          "strengths_vs_pp": "Massive brand awareness, extensive product line, professional influencer network, retail partnerships",
+          "weaknesses_vs_pp": "Less personal farm-to-skin story, higher prices, less ingredient simplicity"
+        },
+        {
+          "name": "Toups and Co Organics",
+          "url": "https://toupsandco.com",
+          "price_range": "$19-$187",
+          "product_count": "40+",
+          "usp": "Homesteader-founded; expanded into serums, color cosmetics, full skincare line",
+          "social_presence": "Instagram: 122K, Facebook: 38K",
+          "strengths_vs_pp": "Broader range including cosmetics, higher brand recognition, premium positioning",
+          "weaknesses_vs_pp": "Higher prices, less farm-direct narrative, product complexity dilutes tallow focus"
+        },
+        {
+          "name": "Ancestral Cosmetics",
+          "url": "https://ancestralcosmetics.com",
+          "price_range": "$17-$45",
+          "product_count": "12-15",
+          "usp": "Irish grass-fed tallow and raw honey; strong ancestral wellness positioning",
+          "social_presence": "Instagram: 109K, Trustpilot reviews",
+          "strengths_vs_pp": "Larger following, international market, strong reviews on Trustpilot",
+          "weaknesses_vs_pp": "No direct farm ownership, international shipping costs for US customers"
+        },
+        {
+          "name": "Nefertem Naturals",
+          "url": "https://nefertemnaturals.com",
+          "price_range": "$29-$80",
+          "product_count": "15-20",
+          "usp": "Self-proclaimed 'original tallow skincare brand' since 2012; 10K+ customer reviews",
+          "social_presence": "Instagram: 1.2K, press coverage in US Weekly, Yahoo News",
+          "strengths_vs_pp": "Longest track record, strong press, 10K+ reviews, pioneer credibility",
+          "weaknesses_vs_pp": "Very low social following, less compelling farm story, no honey integration"
+        },
+        {
+          "name": "Grass Fed Skin",
+          "url": "https://mygrassfedskin.com",
+          "price_range": "$14-$48",
+          "product_count": "10-15",
+          "usp": "Family-founded; exclusively grass-fed, vaccine-free, antibiotic-free cattle sourcing",
+          "social_presence": "Small following, community-driven",
+          "strengths_vs_pp": "Strong sourcing standards messaging for health-sovereignty audience",
+          "weaknesses_vs_pp": "Less polished brand, smaller range, weaker online presence"
+        }
+      ],
+      "market_context": {
+        "market_size": "$277-352M (tallow balm segment, 2025)",
+        "projected_growth": "8.3% CAGR through 2035",
+        "north_america_share": "47.4%",
+        "key_trends": [
+          "Ancestral/animal-based skincare going mainstream",
+          "Clean beauty movement driving adoption",
+          "DTC e-commerce enabling niche artisan brands",
+          "TikTok and Instagram driving tallow skincare virality"
+        ]
+      },
+      "recommendations": [
+        {"priority": "HIGH", "title": "Launch aggressive Instagram and TikTok content strategy", "description": "4-5x weekly posts with farm life, tallow rendering, bee management, product creation short-form videos."},
+        {"priority": "HIGH", "title": "Promote subscription/auto-ship program", "description": "10-15% discount on recurring orders for high-repeat products."},
+        {"priority": "HIGH", "title": "Pursue press and influencer outreach", "description": "Pitch to clean beauty publications, ancestral health podcasts, homesteading media."},
+        {"priority": "MEDIUM", "title": "Add prominent social proof and trust signals", "description": "Aggregate review counts, testimonial carousel, certifications, Awesome Foundation feature."},
+        {"priority": "MEDIUM", "title": "Optimize for tallow skincare SEO keywords", "description": "Blog strategy targeting 'grass-fed tallow balm,' 'tallow face cream,' 'beef tallow skincare benefits.'"},
+        {"priority": "LOW", "title": "Develop a hero product identity", "description": "Heavily promote one signature product as the gateway to the brand."}
+      ],
+      "details": {
+        "market_differentiation": {"score": 7, "assessment": "Strong dual-ingredient provenance. But 'ancestral tallow' positioning shared by multiple competitors."},
+        "pricing_competitiveness": {"score": 8, "assessment": "Well-positioned. $8-$79 range undercuts premium competitors by 15-30%."},
+        "brand_positioning": {"score": 6, "assessment": "Compelling story but under-leveraged. No-water and 'less is more' angles are underutilized differentiators."},
+        "online_visibility": {"score": 2, "assessment": "Most critical weakness. Negligible social following vs 100K-563K competitors. Invisible in search and editorial."},
+        "product_range": {"score": 7, "assessment": "21 SKUs is strong. Niche specialty products (pregnancy, baby, men) are a competitive advantage."}
+      }
+    },
+    {
+      "category": "Brand & Trust",
+      "score": 52,
+      "weight": 0.10,
+      "weighted_score": 5.2,
+      "strengths": [
+        "Strong, authentic founder story rooted in farm ownership",
+        "Consistent visual identity with earthy pastoral aesthetic",
+        "Clear educational, wellness-focused brand voice",
+        "Comprehensive 16-question FAQ demonstrates transparency",
+        "Well-defined tagline hierarchy combining functional and aspirational"
+      ],
+      "weaknesses": [
+        "No customer reviews or testimonials visible on homepage",
+        "No social media links visible despite having Instagram presence",
+        "Zero third-party trust signals",
+        "Fera reviews integration exists but is not surfaced",
+        "Fragmented Instagram presence (two handles found)",
+        "No TikTok presence despite tallow skincare trending on the platform"
+      ],
+      "recommendations": [
+        {"priority": "HIGH", "title": "Activate Fera Reviews on homepage and product pages", "description": "Configure existing integration. Collect 10+ reviews on top sellers via post-purchase emails."},
+        {"priority": "HIGH", "title": "Add social media links to website header/footer", "description": "Instagram @pastureandpetalco exists but is not linked from the website."},
+        {"priority": "HIGH", "title": "Establish active TikTok presence", "description": "3 content pillars: behind-the-scenes, ingredient education, before/after routines."},
+        {"priority": "MEDIUM", "title": "Consolidate Instagram to one handle", "description": "Choose primary between @pastureandpetalco and @pastureandpetal_."},
+        {"priority": "MEDIUM", "title": "Add trust badges section", "description": "Handmade, grass-fed, organic botanicals, farm-crafted in Maryland."},
+        {"priority": "LOW", "title": "Pursue local press features", "description": "Pitch to Maryland press, farm-to-table blogs, natural skincare publications."}
+      ],
+      "details": {
+        "brand_consistency": {"score": 7, "assessment": "Strong internal consistency across visual identity, voice, and product line."},
+        "trust_signals": {"score": 3, "assessment": "Critically underdeveloped. Only farm narrative, Shopify badge, and FAQ. Missing high-impact signals."},
+        "social_proof": {"score": 2, "assessment": "Nearly nonexistent on website. Instagram exists but not linked. No TikTok."},
+        "visual_identity": {"score": 7, "assessment": "Cohesive earth tone palette. Natural product photography. Clean typography."},
+        "brand_story": {"score": 8, "assessment": "Strongest dimension. Authentic, differentiated, emotionally compelling founder story."}
+      }
+    },
+    {
+      "category": "Growth & Strategy",
+      "score": 45,
+      "weight": 0.10,
+      "weighted_score": 4.5,
+      "strengths": [
+        "Diversified 21-SKU catalog with multiple entry points and upsell opportunities",
+        "Smart niche targeting with specialty products for pregnancy, nursing, and men",
+        "Wholesale channel on Faire provides B2B diversification",
+        "Affiliate program infrastructure in place (GoAffPro)",
+        "Subscription platform enabled (Recharge)",
+        "Accessible $8-$79 price range with low entry point"
+      ],
+      "weaknesses": [
+        "US shipping only limits addressable market",
+        "No evidence of active email marketing or post-purchase flows",
+        "Subscription not visibly promoted despite being enabled",
+        "Affiliate program exists but no visible influencer partnerships",
+        "No content marketing or blog presence",
+        "Missing TikTok — highest-ROI organic channel for tallow skincare",
+        "No customer referral program"
+      ],
+      "recommendations": [
+        {"priority": "HIGH", "title": "Launch TikTok content strategy", "description": "3-4 weekly posts: farm behind-the-scenes, ingredient education, product demos, founder story."},
+        {"priority": "HIGH", "title": "Implement post-purchase email automation", "description": "5-email sequence: confirmation, shipping tips, review request, cross-sell, replenishment reminder."},
+        {"priority": "HIGH", "title": "Promote Subscribe-and-Save as default option", "description": "10-15% subscriber discount on all replenishable products. Target 30%+ subscription revenue."},
+        {"priority": "MEDIUM", "title": "Activate affiliate program with micro-influencer outreach", "description": "20-30 micro-influencers in ancestral health, natural skincare, homesteading niches."},
+        {"priority": "MEDIUM", "title": "Launch educational blog for SEO capture", "description": "2-4 articles monthly targeting high-intent tallow skincare searches."},
+        {"priority": "MEDIUM", "title": "Create segment-targeted bundles", "description": "New Mom Bundle, His & Hers Bundle, $25 Starter Kit for trial."},
+        {"priority": "LOW", "title": "Implement customer referral program", "description": "$10 credit for referrer and new customer via ReferralCandy or Smile.io."},
+        {"priority": "LOW", "title": "Evaluate international shipping expansion", "description": "Canada and UK as first expansion markets."}
+      ],
+      "details": {
+        "pricing_strategy": {"score": 7, "assessment": "Well-structured range with accessible entry points. Subscribe-and-save discount needs visibility."},
+        "growth_channels": {"score": 3, "assessment": "Infrastructure exists but minimal execution. No TikTok, weak Instagram, no content, no paid."},
+        "retention_strategy": {"score": 4, "assessment": "Recharge enabled but unclear promotion. No post-purchase sequences, loyalty, or VIP tiers."},
+        "expansion_opportunities": {"score": 6, "assessment": "Specialty niche products, wholesale, and natural lifecycle cross-sell paths available."},
+        "referral_program": {"score": 2, "assessment": "No referral program despite operating in a highly evangelical niche community."}
+      }
+    }
+  ],
+  "top_priorities": [
+    {
+      "rank": 1,
+      "title": "Add Social Proof — Reviews, Testimonials, Star Ratings",
+      "impact": "HIGH",
+      "effort": "LOW",
+      "description": "Activate the already-installed Fera reviews integration. Send post-purchase emails requesting reviews. Display star ratings on all product cards and a testimonial section on the homepage. This is the single highest-impact, lowest-effort improvement available.",
+      "categories_affected": ["Content & Messaging", "Conversion Optimization", "Brand & Trust"]
+    },
+    {
+      "rank": 2,
+      "title": "Fix On-Page SEO Fundamentals",
+      "impact": "HIGH",
+      "effort": "LOW",
+      "description": "Write unique meta titles and descriptions for all pages. Fix the 'My Store' brand in schema markup. Consolidate H1 tags. Add Open Graph meta tags. These are quick Shopify admin fixes with outsized search visibility impact.",
+      "categories_affected": ["SEO & Discoverability"]
+    },
+    {
+      "rank": 3,
+      "title": "Launch TikTok and Strengthen Instagram Presence",
+      "impact": "HIGH",
+      "effort": "MEDIUM",
+      "description": "Tallow skincare is trending massively on TikTok. Brynn's authentic farm-to-skin story is perfectly suited for short-form video. Start posting 3-4x weekly. Link social accounts from the website. Consolidate Instagram handles.",
+      "categories_affected": ["Brand & Trust", "Competitive Positioning", "Growth & Strategy"]
+    },
+    {
+      "rank": 4,
+      "title": "Start a Tallow Education Blog",
+      "impact": "HIGH",
+      "effort": "MEDIUM",
+      "description": "The /blogs/news section exists but is empty. Publish 2-4 articles monthly targeting tallow skincare search queries. This captures organic traffic, builds authority, and differentiates from competitors.",
+      "categories_affected": ["SEO & Discoverability", "Content & Messaging"]
+    },
+    {
+      "rank": 5,
+      "title": "Implement Email Marketing Automation",
+      "impact": "HIGH",
+      "effort": "MEDIUM",
+      "description": "Build a welcome sequence with first-purchase incentive, post-purchase flow with review requests, and replenishment reminders. Promote subscribe-and-save. Email is the highest-ROI channel for DTC skincare.",
+      "categories_affected": ["Conversion Optimization", "Growth & Strategy"]
+    }
+  ],
+  "quick_wins": [
+    "Fix shipping threshold inconsistency ($100 on homepage should be $80)",
+    "Update Shopify store name from 'My Store' to 'Pasture & Petal' in settings",
+    "Add social media links to website footer",
+    "Enable Fera reviews display on homepage and product pages",
+    "Add a 10% first-order discount popup for email capture",
+    "Replace 'Shop now' CTA with benefit-driven copy",
+    "Add trust badge icons below add-to-cart buttons",
+    "Write meta descriptions for homepage and top 5 product pages",
+    "Set up Google Business Profile for Fiddlers Green Farm",
+    "Consolidate Instagram to single handle and link from website"
+  ],
+  "products": {
+    "total_skus": 21,
+    "price_range": {"min": 8, "max": 79, "currency": "USD"},
+    "categories": ["Face", "Body", "Lip", "Specialty", "Bundles", "Gift Cards"],
+    "catalog": [
+      {"name": "Bare Balm", "price": 26, "category": "Face/Body"},
+      {"name": "Perennial Glow", "price": 36, "category": "Face/Body"},
+      {"name": "Harmonize", "price": 30, "category": "Face/Body"},
+      {"name": "Luminous Leaf", "price": 32, "category": "Face/Body"},
+      {"name": "Rose Reverie", "price": 34, "category": "Face/Body"},
+      {"name": "Perc Up Honey Mask", "price": 28, "category": "Face"},
+      {"name": "Facial Cleansing Bar", "price": 16, "category": "Face"},
+      {"name": "Revive Eye Cream", "price": 18, "category": "Face"},
+      {"name": "Bloom Serum", "price": 28, "category": "Face"},
+      {"name": "Revel Serum", "price": 28, "category": "Face"},
+      {"name": "With You Always Body Balm", "price": 34, "category": "Body"},
+      {"name": "Lip Butter", "price": 8, "category": "Lip"},
+      {"name": "Beard Balm", "price": 20, "category": "Specialty"},
+      {"name": "Magnesium Melt", "price": 28, "category": "Body"},
+      {"name": "Every Step Bundle", "price_range": "62-71", "category": "Bundle"},
+      {"name": "Best Sellers Bouquet", "price": 79, "category": "Bundle"},
+      {"name": "Veil Soleil", "price": 44, "category": "Face/Body"},
+      {"name": "Blissful Bump", "price": 40, "category": "Specialty"},
+      {"name": "Nip Nourish", "price": 19, "category": "Specialty"},
+      {"name": "Bum Balm", "price": 28, "category": "Body"},
+      {"name": "Gift Card", "price_range": "10-150", "category": "Gift Card"}
+    ]
+  }
+}
